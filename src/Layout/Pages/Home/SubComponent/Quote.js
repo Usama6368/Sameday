@@ -113,7 +113,6 @@ function Quote() {
         >
           {[1, 2, 3].map((item, index) => (
             <span
-              onClick={() => setTab(item)}
               key={index}
               style={{
                 height: "50px",
@@ -167,7 +166,7 @@ function Quote() {
                   borderColor: "#ffffff50",
                   marginTop: "10px",
                   padding: "10px",
-                  height: "90px",
+
                   borderRadius: "7px",
                   cursor: "pointer",
                 }}
@@ -179,16 +178,12 @@ function Quote() {
                 >
                   <img src={item.image} />
                 </div>
-                <div
-                  style={{
-                    height: "40%",
-                  }}
-                >
+                <div style={{}}>
                   <span
                     style={{
                       textAlign: "center",
                       color: colors.white,
-                      fontSize: "0.8vw",
+                      fontSize: "10px",
                     }}
                   >
                     {item.name}

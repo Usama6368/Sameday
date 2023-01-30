@@ -22,6 +22,11 @@ export default function Section8() {
         }}
       >
         <Col
+          sm={12}
+          lg={8}
+          md={8}
+          xl={8}
+          xs={12}
           style={{
             justifyContent: "center",
             padding: "20px",
@@ -29,7 +34,7 @@ export default function Section8() {
         >
           <span
             style={{
-              fontSize: "2vw",
+              fontSize: "16px",
             }}
           >
             Get a free Quote
@@ -37,7 +42,7 @@ export default function Section8() {
           <div
             style={{
               display: "flex",
-              fontSize: "3vw",
+              fontSize: "32px",
               fontWeight: "bold",
             }}
           >
@@ -53,11 +58,11 @@ export default function Section8() {
           </div>
         </Col>
         <Col
-          sm={4}
+          sm={12}
           lg={4}
           md={4}
           xl={4}
-          xs={4}
+          xs={12}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -73,7 +78,7 @@ export default function Section8() {
               borderRadius: "3px",
               fontWeight: "500",
               textAlign: "center",
-              fontSize: "1.5vw",
+              fontSize: "16px",
             }}
           >
             Get a free Quote

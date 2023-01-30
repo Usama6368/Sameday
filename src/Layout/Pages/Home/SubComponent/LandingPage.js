@@ -5,6 +5,7 @@ import colors from "../../../../config/colors";
 import Quote from "./Quote";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import "./Landing.css";
 function LandingPage() {
   const sm = 12;
   const lg = 6;
@@ -37,13 +38,14 @@ function LandingPage() {
       }}
     >
       <Row
+        className="main"
         style={{
           backgroundColor: "rgba(0, 0, 0, 0.5)",
-          padding: "0px 80px 0px 80px",
         }}
       >
         <Col style={{ margin: "20px 0px 20px 0px" }} sm={12} lg={12} md={12}>
           <Row
+            className="myheader"
             style={{
               alignItems: "center",
             }}
@@ -232,24 +234,8 @@ function LandingPage() {
             </Col>
           </Row>
         </Col>
-        <Col
-          style={{
-            padding: "0px 155px 0px 0px",
-          }}
-          sm={sm}
-          md={md}
-          lg={lg}
-        >
-          <p
-            style={{
-              fontWeight: "bold",
-              fontSize: "40px",
-              color: colors.white,
-              width: "80%",
-            }}
-          >
-            Same Day & Urgent Courier Services!
-          </p>
+        <Col className="same" style={{}} sm={sm} md={md} lg={lg}>
+          <p className="sameday">Same Day & Urgent Courier Services!</p>
           <span
             style={{
               color: colors.white,

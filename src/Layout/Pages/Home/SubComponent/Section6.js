@@ -45,7 +45,7 @@ export default function Section6() {
             listStyle: "none",
             display: "flex",
             fontSize: "15px",
-            justifyContent: "flex-end",
+            justifyContent: "space-evenly",
             marginTop: "50px",
           }}
         >
@@ -55,27 +55,22 @@ export default function Section6() {
             require("../../../../assets/l4.png"),
             require("../../../../assets/l3.png"),
           ].map((item, index) => (
-            <div
-              key={index}
-              style={{
-                marginRight: "60px",
-              }}
-            >
+            <div key={index} style={{}}>
               <img
                 style={
                   index == 0
                     ? {
-                        height: "70px",
-                        width: "188px",
+                        height: "6vw",
+                        width: "14vw",
                       }
                     : index === 1
                     ? {
-                        height: "70px",
-                        width: "118px",
+                        height: "6vw",
+                        width: "6vw",
                       }
                     : index === 2
-                    ? { height: "70px", width: "172px" }
-                    : { height: "70px", width: "378px" }
+                    ? { height: "6vw", width: "12vw" }
+                    : { height: "6vw", width: "18vw" }
                 }
                 src={item}
               />

@@ -1,0 +1,34 @@
+.main {
+    padding: 0px 80px 0px 80px;
+}
+.same{
+        padding: 0px 155px 0px 0px;
+}
+.sameday{
+    
+            font-weight: bold;
+                font-size:  40px;
+                color: #ffffff;
+                width: 80%,
+ 
+}
+@media screen and (max-width: 900px) {
+.main {
+        padding: 0;
+   
+    }
+
+        .same {
+            padding: 0px 20px 0px 20px;
+            text-align: center;
+
+        }
+
+        .sameday{
+                text-align: center;
+                width: 100%;
+        }
+        .myheader {
+            display: none;
+        }
+}
