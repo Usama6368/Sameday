@@ -1,0 +1,14 @@
+.error {
+    color: red;
+    margin: 5px 0px 5px 0px;
+}
+.inp {
+    width: 55%
+}
+
+@media screen and (max-width: 700px) {
+    .inp {
+        width: 90%
+    }
+
+}

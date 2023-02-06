@@ -1,8 +1,7 @@
 import React from "react";
 import { Accordion, Button, Col, Row } from "react-bootstrap";
 import colors from "../../../config/colors";
-import CBackgorundImage from "../../../CustomComponent.js/CBackgorundImage";
-import Section8 from "../Home/SubComponent/Section8";
+import CBackgorundImage from "../../../CustomComponent/CBackgorundImage";
 
 function AboutUs() {
   const heading = {
@@ -65,6 +64,7 @@ function AboutUs() {
   return (
     <>
       <CBackgorundImage heading={"About Us"} detail={"Out Little Story"} />
+
       <div
         style={{
           padding: "30px 70px 30px 70px",

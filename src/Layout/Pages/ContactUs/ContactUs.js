@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { icons } from "react-icons";
 import { BsInstagram, BsTelephone, BsTwitter } from "react-icons/bs";
@@ -6,11 +6,14 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { TfiWorld } from "react-icons/tfi";
 import colors from "../../../config/colors";
-
+import * as yup from "yup";
 import GoogleMapReact from "google-map-react";
 import myImage from "../../../assets/bg1.png";
-import CBackgorundImage from "../../../CustomComponent.js/CBackgorundImage";
+import CBackgorundImage from "../../../CustomComponent/CBackgorundImage";
+import { Formik } from "formik";
+import "./Contact.css";
 function ContactUs() {
+  const [loader, setLoader] = useState(false);
   const defaultProps = {
     center: {
       lat: 10.99835602,
@@ -36,6 +39,12 @@ function ContactUs() {
       name: "Location",
     },
   ];
+
+  const validationSchema = yup.object({
+    name: yup.string().max(20).min(3).required().label("Name"),
+    email: yup.string().email().required().label("Email"),
+    message: yup.string().max(50).required().label("Message"),
+  });
   return (
     <>
       <CBackgorundImage heading={"Contact Us"} detail={"Get In Touch"} />
@@ -65,71 +74,126 @@ function ContactUs() {
           </Col>
         ))}
       </Row>
-
-      <Row
-        style={{
-          background: "#F2F2F2",
-
-          textAlign: "center",
-          padding: "35px 0px 35px 0",
-          alignItems: "center",
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          message: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={(value, { resetForm }) => {
+          setLoader(true);
+          console.log(value);
+          setTimeout(() => {
+            setLoader(false);
+            resetForm();
+          }, 2000);
         }}
       >
-        <span style={{ color: "#2F3690", fontSize: "24px", fontWeight: 600 }}>
-          Leave us your info{" "}
-        </span>
-        <span
-          style={{ marginBottom: "25px", fontWeight: 550, fontSize: "12px" }}
-        >
-          and we will get back to you.
-        </span>
-        <span
-          style={{
-            flexDirection: "column",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Form.Control
+        {({
+          values,
+          errors,
+          handleBlur,
+          handleChange,
+          handleSubmit,
+          touched,
+          setFieldValue,
+          isValid,
+        }) => (
+          <Row
             style={{
-              background: "#FFFFFF",
-              width: "45vw",
-              marginBottom: "15px",
-              height: "8vh",
+              background: "#F2F2F2",
+
+              textAlign: "center",
+              padding: "35px 0px 35px 0",
+              alignItems: "center",
             }}
-            placeholder="Name*"
-            type="text"
-          />
-          <Form.Control
-            style={{
-              background: "#FFFFFF",
-              height: "8vh",
-              width: "45vw",
-              marginBottom: "15px",
-            }}
-            placeholder="Email*"
-            type="text"
-          />
-          <Form.Control
-            as="textarea"
-            rows={3}
-            style={{
-              background: "#FFFFFF",
-              width: "45vw",
-              marginBottom: "25px",
-            }}
-            placeholder="Message*"
-            type="text"
-          />
-          <Button
-            style={{ width: "45vw", background: "#2F3690", height: "43px" }}
-            color="#2F3690"
           >
-            Send
-          </Button>
-        </span>
-      </Row>
-      <Row style={{ height: "70vh", width: "100%" }}>
+            <span
+              style={{ color: "#2F3690", fontSize: "24px", fontWeight: 600 }}
+            >
+              Leave us your info{" "}
+            </span>
+            <span
+              style={{
+                marginBottom: "25px",
+                fontWeight: 550,
+                fontSize: "12px",
+              }}
+            >
+              and we will get back to you.
+            </span>
+            <span
+              style={{
+                flexDirection: "column",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Form.Control
+                className="inp"
+                style={{
+                  background: "#FFFFFF",
+
+                  marginBottom: errors.name ? "0px" : "25px",
+                  height: "8vh",
+                }}
+                placeholder="Name*"
+                type="text"
+                name="name"
+                onChange={handleChange}
+                value={values.name}
+              />
+              <small className="error">{errors.name && errors.name}</small>
+              <Form.Control
+                className="inp"
+                style={{
+                  background: "#FFFFFF",
+                  height: "8vh",
+
+                  marginBottom: errors.email ? "0px" : "25px",
+                }}
+                placeholder="Email*"
+                type="text"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+              />
+              <small className="error">{errors.email && errors.email}</small>
+              <Form.Control
+                className="inp"
+                as="textarea"
+                rows={3}
+                style={{
+                  background: "#FFFFFF",
+
+                  marginBottom: errors.message ? "0px" : "25px",
+                }}
+                placeholder="Message*"
+                type="text"
+                name="message"
+                onChange={handleChange}
+                value={values.message}
+              />
+              <small className="error">
+                {errors.message && errors.message}
+              </small>
+              <Button
+                disabled={!isValid || loader}
+                style={{ width: "45vw", background: "#2F3690", height: "43px" }}
+                color="#2F3690"
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {loader ? "Loading..." : "Send"}
+              </Button>
+            </span>
+          </Row>
+        )}
+      </Formik>
+
+      {/* <Row style={{ height: "70vh", width: "100%" }}>
         <GoogleMapReact
           defaultCenter={{
             lat: 10.99835602,
@@ -137,7 +201,7 @@ function ContactUs() {
           }}
           defaultZoom="11"
         ></GoogleMapReact>
-      </Row>
+      </Row> */}
       <Row>
         <ul
           style={{

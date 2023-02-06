@@ -5,6 +5,7 @@ import img1 from "../../../assets/Rectangle17.png";
 import img2 from "../../../assets/Rectangle20.png";
 import colors from "../../../config/colors";
 import { BsCheck, BsCheckCircleFill, BsCheckLg } from "react-icons/bs";
+import LandingPage from "../Home/SubComponent/LandingPage";
 function Services() {
   const sm = 12;
   const md = 6;
@@ -30,6 +31,7 @@ function Services() {
   };
   return (
     <>
+      <LandingPage />
       <div
         style={{
           padding: "50px 50px 50px 50px",
@@ -151,10 +153,10 @@ function Services() {
 
       <div
         style={{
-          padding: "50px 50px 50px 50px",
+          padding: "3vw",
         }}
       >
-        <Table striped hover>
+        <Table responsive striped hover>
           <thead>
             <tr
               style={{
@@ -249,7 +251,6 @@ function Services() {
           <Row style={{}}>
             <Col
               style={{
-                height: "500px",
                 backgroundColor: "#FFFFFF",
                 boxShadow: "-2px 4px 25px -4px rgba(0, 0, 0, 0.15)",
                 padding: "30px",
@@ -352,7 +353,6 @@ function Services() {
             <Col
               style={{
                 backgroundImage: `url(${img2})`,
-                height: "500px",
               }}
               sm={sm}
               lg={lg}
@@ -361,7 +361,6 @@ function Services() {
             ></Col>
             <Col
               style={{
-                height: "500px",
                 backgroundImage: `url(${img1})`,
               }}
               sm={sm}
@@ -371,7 +370,6 @@ function Services() {
             ></Col>
             <Col
               style={{
-                height: "500px",
                 backgroundColor: colors.blue,
 
                 padding: "30px",
@@ -442,15 +440,7 @@ function Services() {
               <br />
 
               <br />
-              <Button
-                style={{
-                  width: "15vw",
-                  margin: "10px 0px 20px 0px",
-                  fontWeight: 700,
-                }}
-              >
-                Get a Free Quote
-              </Button>
+              <Button>Get a Free Quote</Button>
               <br />
             </Col>
           </Row>

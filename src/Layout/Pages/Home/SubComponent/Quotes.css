@@ -1,0 +1,12 @@
+.dcar {
+        width: 24%
+
+}
+
+@media screen and (max-width: 700px) {
+    .dcar {
+    width: 48%
+
+    }
+
+}

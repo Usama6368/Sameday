@@ -2,6 +2,7 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import myImage from "../assets/bg1.png";
 import colors from "../config/colors";
+import CNavbar from "./CNavbar";
 export default function CBackgorundImage({ heading, detail }) {
   return (
     <div
@@ -10,12 +11,12 @@ export default function CBackgorundImage({ heading, detail }) {
         height: "720px",
       }}
     >
-      <Row
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          height: "720px",
-        }}
-      >
+      <Row>
+        <CNavbar
+          desktopStyle={{
+            padding: "0px 80px 0px 80px",
+          }}
+        />
         <div
           style={{
             textAlign: "center",
