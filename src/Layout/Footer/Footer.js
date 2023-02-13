@@ -4,7 +4,7 @@ import colors from "../../config/colors";
 import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 import Section8 from "../Pages/Home/SubComponent/Section8";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Footer({ show }) {
   const sm = 12;
@@ -36,7 +36,8 @@ function Footer({ show }) {
         style={{
           backgroundColor: colors.blue,
 
-          padding: "60px",
+          padding: "5vw",
+          marginTop: "10px",
         }}
       >
         <Col
@@ -173,7 +174,15 @@ function Footer({ show }) {
                 borderStyle: "solid",
               }}
             >
-              {item}
+              <Link
+                onClick={() => window.scrollTo(0, 0)}
+                style={{
+                  color: "#ffffff",
+                }}
+                to={`/services/${item.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                {item}
+              </Link>
             </p>
           ))}
         </Col>
@@ -200,7 +209,15 @@ function Footer({ show }) {
                 borderStyle: "solid",
               }}
             >
-              {item}
+              <Link
+                onClick={() => window.scrollTo(0, 0)}
+                style={{
+                  color: "#ffffff",
+                }}
+                to={`/services/${item.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                {item}
+              </Link>
             </p>
           ))}
         </Col>

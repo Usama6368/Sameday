@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import colors from "../../../../config/colors";
 
 export default function Section8() {
+  const navigation = useNavigate();
   return (
     <Row
       style={{
@@ -71,7 +73,10 @@ export default function Section8() {
           }}
         >
           <Button
-            onClick={() => window.alert("Get a free Quote")}
+            onClick={() => {
+              navigation("/quote");
+              window.scrollTo(0, 0);
+            }}
             style={{
               backgroundColor: " #1272BE",
               padding: "10px",

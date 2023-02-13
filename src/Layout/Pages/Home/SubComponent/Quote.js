@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import { Formik } from "formik";
 import * as yup from "yup";
 import "./Quotes.css";
+import { formatString } from "../../../../functions/javascript";
+import { useAlert } from "react-alert";
 const inputStyle = {
   backgroundColor: "#626262",
   borderStyle: "none",
@@ -26,8 +28,24 @@ const buttonStyle = {
 
   borderRadius: 0,
 };
-function Quote() {
+function Quote({ id, backgroundColor = "#00000040" }) {
+  console.log(id);
+  const alert = useAlert();
   const [loader, setLoader] = useState(false);
+  const [time, setTime] = useState(false);
+
+  var timeList = [];
+  for (var i = 0; i < 24; i++) {
+    var period = i < 12 ? "AM" : "PM";
+    var hour = i % 12 || 12;
+    for (var j = 0; j < 2; j++) {
+      var minute = j * 30;
+      var times =
+        hour + ":" + (minute < 10 ? "0" + minute : minute) + " " + period;
+      timeList.push(times);
+    }
+  }
+
   const cars = [
     {
       id: 1,
@@ -71,16 +89,34 @@ function Quote() {
     },
   ];
 
+  const errorText = (error, touched) =>
+    error && (
+      <small
+        style={{
+          textAlign: "left",
+          color: "red",
+        }}
+      >
+        {error}
+      </small>
+    );
   const validationSchema = yup.object({
-    name: yup.string().min(3).max(15).required(),
-    email: yup.string().email().required(),
-    phone: yup.string().required(),
+    car: yup.string().required().label("Car"),
+    pickUp: yup.string().length(4).required().label("Pick Up"),
+    dropOff: yup.string().length(4).required().label("Drop Off"),
+
+    collecting: yup.string().required().label("Collecting"),
+    time: yup.string().required().label("Time"),
+
+    name: yup.string().min(3).required().label("Name"),
+    email: yup.string().email().required().label("Email"),
+    phone: yup.string().required().label("Phone"),
   });
   return (
     <Formik
       initialValues={{
         tab: 1,
-        car: "",
+        car: "Car",
         name: "",
         email: "",
         phone: "",
@@ -89,15 +125,52 @@ function Quote() {
         collecting: "",
         time: "",
       }}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
         setLoader(true);
 
         console.log(values);
-        setTimeout(() => {
-          resetForm();
-          setLoader(false);
-        }, 2000);
+
+        var myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+        var formdata = new FormData();
+        formdata.append(
+          "type",
+          id === undefined ? "General" : formatString(id)
+        );
+        formdata.append("van_size", values.car);
+        formdata.append("pickup_post_code", values.pickUp);
+        formdata.append("dropoff_post_code", values.dropOff);
+        formdata.append("time_colllecting", values.time);
+        formdata.append("day_collection", values.collecting);
+        formdata.append("name", values.name);
+        formdata.append("email", values.email);
+        formdata.append("phone", values.phone);
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: formdata,
+          redirect: "follow",
+        };
+
+        fetch(
+          "https://admin.samedayexpresscouriers.co.uk/api/quote",
+          requestOptions
+        )
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            if (result.success) {
+              alert.success("Record Added Successfully !");
+              resetForm();
+            } else {
+              alert(result.message);
+            }
+          })
+          .catch((error) => console.log("error", error))
+          .finally(() => {
+            setLoader(false);
+          });
       }}
     >
       {({
@@ -112,7 +185,7 @@ function Quote() {
       }) => (
         <div
           style={{
-            backgroundColor: "#00000040",
+            backgroundColor: backgroundColor,
             padding: "25px",
             borderRadius: "7px",
           }}
@@ -213,26 +286,22 @@ function Quote() {
                       cursor: "pointer",
                     }}
                   >
-                    <div
+                    <img src={item.image} />
+
+                    <span
                       style={{
-                        height: "60%",
+                        textAlign: "center",
+                        color: colors.white,
+                        fontSize: "10px",
+                        marginTop: "5px",
                       }}
                     >
-                      <img src={item.image} />
-                    </div>
-                    <div style={{}}>
-                      <span
-                        style={{
-                          textAlign: "center",
-                          color: colors.white,
-                          fontSize: "10px",
-                        }}
-                      >
-                        {item.name}
-                      </span>
-                    </div>
+                      {item.name}
+                    </span>
                   </div>
                 ))}
+
+                {errorText(errors.car)}
               </Row>
 
               <Row
@@ -246,12 +315,15 @@ function Quote() {
                       Pick Up Post Code
                     </Form.Label>
                     <Form.Control
+                      className="form-control"
                       style={inputStyle}
-                      type="text"
+                      type="number"
                       name="pickUp"
                       value={values.pickUp}
                       onChange={handleChange}
+                      onBlur={handleBlur("pickUp")}
                     />
+                    {touched.pickUp && errorText(errors.pickUp)}
                   </Form.Group>
                 </Col>
 
@@ -260,17 +332,30 @@ function Quote() {
                     <Form.Label style={labelStyle}>
                       Drop Off Post Code
                     </Form.Label>
+
                     <Form.Control
+                      className="form-control"
+                      onBlur={handleBlur("dropOff")}
                       style={inputStyle}
-                      type="text"
+                      type="number"
                       name="dropOff"
                       value={values.dropOff}
                       onChange={handleChange}
                     />
+
+                    {touched.dropOff && errorText(errors.dropOff)}
                   </Form.Group>
                 </Col>
               </Row>
               <Button
+                disabled={
+                  errors.pickUp ||
+                  !values.pickUp ||
+                  errors.dropOff ||
+                  !values.dropOff
+                    ? true
+                    : false
+                }
                 onClick={() => {
                   setFieldValue("tab", 2);
                 }}
@@ -291,16 +376,27 @@ function Quote() {
                     When do you need this collecting?
                   </Form.Label>
                   <Form.Select
+                    className="form-control"
+                    onBlur={handleBlur("collecting")}
                     style={inputStyle}
                     name="collecting"
                     value={values.collecting}
                     onChange={handleChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    <option>Please Select</option>
+                    {[
+                      { id: 0, name: "Today" },
+                      { id: 1, name: "Tommorow" },
+                      { id: 2, name: "Scheduled later" },
+                      { id: 3, name: "Urgent ASAP" },
+                    ].map((item, index) => (
+                      <option key={index} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
                   </Form.Select>
+
+                  {touched.collecting && errorText(errors.collecting)}
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -308,15 +404,47 @@ function Quote() {
                     What time do you need this collecting?
                   </Form.Label>
                   <Form.Control
+                    className="form-control"
+                    onBlur={handleBlur("time")}
+                    onFocus={() => {
+                      setTime(true);
+                    }}
                     style={inputStyle}
                     type="text"
                     name="time"
                     value={values.time}
                     onChange={handleChange}
                   />
+                  {time && values.time.length === 0 && (
+                    <div
+                      style={{
+                        height: "120px",
+                        overflow: "scroll",
+                        backgroundColor: "white",
+                        textAlign: "center",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {timeList.map((item, index) => (
+                        <option
+                          onClick={() => {
+                            setFieldValue("time", item);
+                            setTime(false);
+                          }}
+                          key={index}
+                          value={item}
+                        >
+                          {item}
+                        </option>
+                      ))}
+                    </div>
+                  )}
+
+                  {touched.time && errorText(errors.time)}
                 </Form.Group>
               </Row>
               <Button
+                disabled={!values.collecting || !values.time ? true : false}
                 onClick={() => {
                   setFieldValue("tab", 3);
                 }}
@@ -335,24 +463,30 @@ function Quote() {
                 <Form.Group className="mb-3">
                   <Form.Label style={labelStyle}>User Name</Form.Label>
                   <Form.Control
+                    className="form-control"
+                    onBlur={handleBlur("name")}
                     style={inputStyle}
                     type="text"
                     name="name"
                     value={values.name}
                     onChange={handleChange}
                   />
+                  {touched.name && errorText(errors.name)}
                 </Form.Group>
                 {/* <small className="error">{errors.name && errors.name}</small> */}
                 <Col sm={12} lg={6} md={6} xl={6}>
                   <Form.Group className="mb-3">
                     <Form.Label style={labelStyle}>Your Email</Form.Label>
                     <Form.Control
+                      className="form-control"
+                      onBlur={handleBlur("email")}
                       style={inputStyle}
                       type="email"
                       name="email"
                       values={values.email}
                       onChange={handleChange}
                     />
+                    {touched.email && errorText(errors.email)}
                   </Form.Group>
                 </Col>
 
@@ -360,12 +494,15 @@ function Quote() {
                   <Form.Group>
                     <Form.Label style={labelStyle}>Phone Number</Form.Label>
                     <Form.Control
+                      className="form-control"
+                      onBlur={handleBlur("phone")}
                       style={inputStyle}
                       type="text"
                       name="phone"
                       values={values.phone}
                       onChange={handleChange}
                     />
+                    {touched.phone && errorText(errors.phone)}
                   </Form.Group>
                 </Col>
               </Row>

@@ -1,6 +1,8 @@
 import AboutUs from "./Layout/Pages/AboutUs/AboutUs";
 import ContactUs from "./Layout/Pages/ContactUs/ContactUs";
+import Form from "./Layout/Pages/Form/Form";
 import Home from "./Layout/Pages/Home/Home";
+import Quote from "./Layout/Pages/Home/SubComponent/Quote";
 import NoPage from "./Layout/Pages/NoPage/NoPage";
 import Services from "./Layout/Pages/Services/Services";
 
@@ -18,8 +20,12 @@ export const routes = [
     element: <ContactUs />,
   },
   {
-    path: "services",
+    path: "services/:id",
     element: <Services />,
+  },
+  {
+    path: "quote",
+    element: <Form />,
   },
   {
     path: "*",

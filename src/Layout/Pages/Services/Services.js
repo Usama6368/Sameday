@@ -1,37 +1,54 @@
-import React from "react";
-import { Button, Col, Form, Row, Table } from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
+import { Button, Table } from "react-bootstrap";
 import Section6 from "../Home/SubComponent/Section6";
-import img1 from "../../../assets/Rectangle17.png";
-import img2 from "../../../assets/Rectangle20.png";
 import colors from "../../../config/colors";
-import { BsCheck, BsCheckCircleFill, BsCheckLg } from "react-icons/bs";
 import LandingPage from "../Home/SubComponent/LandingPage";
+import { useNavigate, useParams } from "react-router-dom";
+import Section4 from "../Home/SubComponent/Section4";
+import Testomonials from "../Home/SubComponent/Testomonials";
+import parse from "html-react-parser";
 function Services() {
-  const sm = 12;
-  const md = 6;
-  const lg = 6;
-  const xl = 6;
+  const { id } = useParams();
 
-  const ulStyle = {
-    listStyle: "none",
-    paddingLeft: "0rem",
-    paddingRight: "0rem",
-  };
+  const navigation = useNavigate();
+  const [data, setData] = useState({});
+  const ref = useRef(null);
+
   const heading = {
     color: "black",
     fontSize: "16px",
   };
-  const inputStyle = {
-    backgroundColor: "#DCDCDC",
-    borderStyle: "none",
-    height: "35px",
-    borderRadius: "3px",
-    color: colors.white,
-    margin: "20px 0px 20px 0px",
-  };
+
+  useEffect(() => {
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    fetch(
+      "https://admin.samedayexpresscouriers.co.uk/api/service/same-day-express-couriers",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setData(result[0]);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
   return (
     <>
-      <LandingPage />
+      <LandingPage
+        onLocationPress={() =>
+          ref.current.scrollIntoView({ behavior: "smooth" })
+        }
+        id={id}
+      />
+
+      <Testomonials />
+      {/* {parse(data?.description)} */}
       <div
         style={{
           padding: "50px 50px 50px 50px",
@@ -53,14 +70,20 @@ function Services() {
             color: colors.blue,
             fontSize: "30px",
             fontWeight: 700,
+            textTransform: "capitalize",
           }}
         >
-          Scheduled Courier Services
+          {id.replace(/-/g, "  ")}
         </span>
         <br />
         <br />
 
-        <span style={heading}>
+        <span
+          style={{
+            color: "black",
+            fontSize: "16px",
+          }}
+        >
           Our dedicated, round the clock Collect Same Day Couriers service is
           available, throughout mainland UK, every day of the year, with over
           15,000 vehicles in our fleet from bikes to trucks providing you with a
@@ -78,7 +101,12 @@ function Services() {
           Whatever, wherever, whenever. We deliver across the country UK 24/7.
         </div>
         <br />
-        <span style={heading}>
+        <span
+          style={{
+            color: "black",
+            fontSize: "16px",
+          }}
+        >
           No matter what your consignment, no matter where it needs to go, no
           matter whether you’re a multinational corporation or an small
           business, we’ll collect your time and condition-critical goods within
@@ -99,7 +127,12 @@ function Services() {
           Same Day Scheduled Courier Services
         </div>
         <br />
-        <span style={heading}>
+        <span
+          style={{
+            color: "black",
+            fontSize: "16px",
+          }}
+        >
           Whatever specialist delivery services you need, we can help with that
           too. We can offer confidential document collection and delivery, a
           same day wait and return courier service, same-day heavy goods
@@ -129,15 +162,43 @@ function Services() {
           </li>
         </ul>
         <br />
-        <span style={heading}>
+        <span
+          style={{
+            color: "black",
+            fontSize: "16px",
+          }}
+        >
           If you would like an immediate quote or more information on our
-          scheduled courier services, you can call us on 0800 102 6025 or you
-          can email us at info@collectsameday.co.uk. Alternatively you can
-          complete the quote form.
+          scheduled courier services, you can call us on{" "}
+          <b
+            style={{
+              color: colors.blue,
+              fontSize: "18px",
+              fontWeight: "bold",
+            }}
+          >
+            0800 102 6025
+          </b>{" "}
+          or you can email us at{" "}
+          <b
+            style={{
+              fontWeight: "bold",
+              color: colors.blue,
+              textDecoration: "underline",
+              fontSize: "17px",
+            }}
+          >
+            info@collectsameday.co.uk
+          </b>
+          . Alternatively you can complete the quote form.
         </span>
 
         <br />
         <Button
+          onClick={() => {
+            navigation("/quote");
+            window.scrollTo(0, 0);
+          }}
           style={{
             backgroundColor: "#1272BE",
             borderRadius: "3px",
@@ -150,7 +211,6 @@ function Services() {
         <br />
         <br />
       </div>
-
       <div
         style={{
           padding: "3vw",
@@ -221,230 +281,9 @@ function Services() {
         </Table>
         <br />
         <br />
-        <Row
-          style={{
-            textAlign: "center",
-          }}
-        >
-          <span style={{ color: "black", fontWeight: 550, fontSize: "17px" }}>
-            Local to you{" "}
-          </span>
-          <br />
-          <span
-            style={{ color: colors.blue, fontWeight: 600, fontSize: "30px" }}
-          >
-            Our Locations
-          </span>
-          <br />
-          <span style={{ textAlign: "center", margin: "20px 0px 20px 0px" }}>
-            Collect Same Day Couriers are a local & nationwide courier service.
-            Whether you want your parcel delivering from London to Manchester,
-            or Glasgow to Southampton – We can deliver, the same day!
-          </span>
-          <br />
-        </Row>
-        <Row
-          style={{
-            justifyContent: "center",
-          }}
-        >
-          <Row style={{}}>
-            <Col
-              style={{
-                backgroundColor: "#FFFFFF",
-                boxShadow: "-2px 4px 25px -4px rgba(0, 0, 0, 0.15)",
-                padding: "30px",
-              }}
-              sm={sm}
-              lg={lg}
-              md={md}
-              xl={xl}
-            >
-              <span style={{ color: colors.blue, fontWeight: 400 }}>
-                Find a location near you
-              </span>
-              <Form.Control style={inputStyle} type="text" />
-              <span style={{ color: colors.blue, fontWeight: 400 }}>
-                Most popular
-              </span>
-              <br />
-              <br />
-              <Row
-                style={{
-                  fontSize: "15px",
-                  paddingLeft: "0px",
-                }}
-              >
-                <Col>
-                  <ul style={ulStyle}>
-                    <li> London</li>
-
-                    <li>Edinburgh</li>
-
-                    <li>Manchester</li>
-                    <li>Birmingham</li>
-                    <li> Glasgow</li>
-                  </ul>
-                </Col>
-                <Col>
-                  <ul style={ulStyle}>
-                    <li>Liverpool</li>
-
-                    <li>Bristol</li>
-
-                    <li>Cambridge</li>
-                    <li>Cardiff</li>
-                    <li> Leeds</li>
-                  </ul>
-                </Col>
-                <Col>
-                  <ul style={ulStyle}>
-                    <li> Bath</li>
-
-                    <li>Nottinghaml</li>
-
-                    <li>Southampton</li>
-                    <li>Newcastle</li>
-                    <li> Sheffield</li>
-                  </ul>
-                </Col>
-              </Row>
-              <span
-                style={{
-                  color: colors.blue,
-
-                  fontWeight: 400,
-                }}
-              >
-                Regions
-              </span>
-
-              <br />
-              <br />
-              <Row>
-                <Col>
-                  <ul style={ulStyle}>
-                    <li> South West</li>
-
-                    <li>South East</li>
-
-                    <li>East Anglia</li>
-                  </ul>
-                </Col>
-                <Col>
-                  <ul style={ulStyle}>
-                    <li> West Midlands</li>
-
-                    <li>East Midlands</li>
-
-                    <li> Yorkshire</li>
-                  </ul>
-                </Col>
-                <Col>
-                  <ul style={ulStyle}>
-                    <li> North West</li>
-
-                    <li> North East</li>
-                  </ul>
-                </Col>
-              </Row>
-              <Button>Get a Free Quote</Button>
-            </Col>
-            <Col
-              style={{
-                backgroundImage: `url(${img2})`,
-              }}
-              sm={sm}
-              lg={lg}
-              md={md}
-              xl={xl}
-            ></Col>
-            <Col
-              style={{
-                backgroundImage: `url(${img1})`,
-              }}
-              sm={sm}
-              lg={lg}
-              md={md}
-              xl={xl}
-            ></Col>
-            <Col
-              style={{
-                backgroundColor: colors.blue,
-
-                padding: "30px",
-              }}
-              sm={sm}
-              lg={lg}
-              md={md}
-              xl={xl}
-            >
-              <span
-                style={{ color: "#FFFFFF", fontWeight: 550, fontSize: "20px" }}
-              >
-                You can trust us
-              </span>
-              <br />
-              <span
-                style={{ color: "#FFFFFF", fontWeight: 600, fontSize: "30px" }}
-              >
-                Safe. Secure. Reliable.
-              </span>
-              <br />
-              <p style={{ color: "#FFFFFF", marginTop: "30px" }}>
-                Collect Same Day Courier services are available to both personal
-                and business users and can accommodate both high volume users
-                and emergency shipments – anything from an envelope to handling
-                a large complex logistical consignments.
-              </p>
-
-              <BsCheckCircleFill color="#1272BE" size={"17px"} />
-
-              <span style={{ marginLeft: "10px", color: colors.white }}>
-                15,000 vehicles across the country.
-              </span>
-              <br />
-
-              <BsCheckCircleFill color="#1272BE" size={"17px"} />
-
-              <span style={{ marginLeft: "10px", color: colors.white }}>
-                All consignments fully insured.
-              </span>
-              <br />
-
-              <BsCheckCircleFill color="#1272BE" size={"17px"} />
-
-              <span style={{ marginLeft: "10px", color: colors.white }}>
-                Personal service from our friendly team.
-              </span>
-              <br />
-
-              <BsCheckCircleFill color="#1272BE" size={"17px"} />
-
-              <span style={{ marginLeft: "10px", color: colors.white }}>
-                Same day wait and return service available.
-              </span>
-              <br />
-
-              <BsCheckCircleFill color="#1272BE" size={"17px"} />
-
-              <span
-                style={{
-                  marginLeft: "10px",
-                  color: colors.white,
-                  fontWeight: 700,
-                }}
-              >
-                Collection within 60 mins & delivered the same day.
-              </span>
-              <br />
-
-              <br />
-              <Button>Get a Free Quote</Button>
-              <br />
-            </Col>
-          </Row>
-        </Row>
+        <div ref={ref}>
+          <Section4 />
+        </div>
         <br />
         <br />
         <Section6 />

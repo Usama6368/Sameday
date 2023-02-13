@@ -2,7 +2,10 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import colors from "../../../../config/colors";
 
-export default function Section1() {
+export default function Section1({
+  backgroundColor = colors.white,
+  marginTop = "-50px",
+}) {
   const sm = 6;
   const md = 3;
   const lg = 3;
@@ -17,9 +20,9 @@ export default function Section1() {
         style={{
           justifyContent: "space-between",
 
-          backgroundColor: colors.white,
+          backgroundColor: backgroundColor,
           width: "90%",
-          marginTop: "-50px",
+          marginTop: marginTop,
           borderRadius: "5px",
           boxShadow: "1px 2px 9px #00000050",
           padding: "20px",

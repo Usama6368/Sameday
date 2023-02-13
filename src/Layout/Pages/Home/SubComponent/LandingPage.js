@@ -7,7 +7,7 @@ import Quote from "./Quote";
 import "./Landing.css";
 import CNavbar from "../../../../CustomComponent/CNavbar";
 
-function LandingPage() {
+function LandingPage({ id, onLocationPress }) {
   const sm = 12;
   const lg = 6;
   const md = 6;
@@ -19,7 +19,7 @@ function LandingPage() {
       }}
     >
       <Row className="main">
-        <CNavbar />
+        <CNavbar onLocationPress={onLocationPress} />
         <Col className="same" style={{}} sm={sm} md={md} lg={lg}>
           <p className="sameday">Same Day & Urgent Courier Services!</p>
           <span
@@ -74,7 +74,7 @@ function LandingPage() {
           </span>
         </Col>
         <Col sm={sm} md={md} lg={lg}>
-          <Quote />
+          <Quote id={id} />
         </Col>
       </Row>
       <br />

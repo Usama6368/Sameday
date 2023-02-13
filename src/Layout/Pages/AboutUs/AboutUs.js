@@ -1,9 +1,11 @@
 import React from "react";
 import { Accordion, Button, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import colors from "../../../config/colors";
 import CBackgorundImage from "../../../CustomComponent/CBackgorundImage";
 
 function AboutUs() {
+  const navigation = useNavigate();
   const heading = {
     color: "black",
     fontSize: "16px",
@@ -67,7 +69,7 @@ function AboutUs() {
 
       <div
         style={{
-          padding: "30px 70px 30px 70px",
+          padding: "30px 5vw 30px 5vw",
           backgroundColor: "#F2F2F2",
         }}
       >
@@ -125,6 +127,10 @@ function AboutUs() {
         <br />
         <br />
         <Button
+          onClick={() => {
+            navigation("/quote");
+            window.scrollTo(0, 0);
+          }}
           style={{
             backgroundColor: "#1272BE",
             borderRadius: "3px",
@@ -139,7 +145,7 @@ function AboutUs() {
       <Row
         style={{
           backgroundColor: colors.white,
-          padding: "30px 70px 30px 70px",
+          padding: "30px 5vw 30px 5vw",
         }}
       >
         <Col sm={12} md={4} lg={4} xl={4}>

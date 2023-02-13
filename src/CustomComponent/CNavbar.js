@@ -3,12 +3,17 @@ import { Col, Row } from "react-bootstrap";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import colors from "../config/colors";
 import "./CNavbar.css";
-export default function CNavbar({ desktopStyle }) {
+export default function CNavbar({
+  desktopStyle,
+  onLocationPress,
+  marginTop = "20px",
+}) {
   const [nav, setNav] = useState(0);
   const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
 
   const links = [
     "Same Day Courier",
@@ -28,6 +33,9 @@ export default function CNavbar({ desktopStyle }) {
     "High Value & Fragile Goods",
     "Hiab & Moffett Mounty Couriers",
   ];
+
+  // str.replace(/-+/g, " ").toUpperCase();
+
   return (
     <>
       {(nav === 1 || nav === 2) && (
@@ -76,34 +84,42 @@ export default function CNavbar({ desktopStyle }) {
                 {[
                   {
                     name: "Some Day Couriers",
-                    link: "some-day-courier",
+                    link: "/",
                   },
                   {
                     name: "Services",
-                    link: "services",
+                    link: "/services",
                   },
                   {
                     name: "Locations",
-                    link: "locations",
+                    link: "/locations",
                   },
-                  {
-                    name: "Trade Accounts",
-                    link: "trade-accounts",
-                  },
+
                   {
                     name: "About",
-                    link: "aboutus",
+                    link: "/aboutus",
                   },
                   {
                     name: "Contact",
-                    link: "contactus",
-                  },
-                  {
-                    name: "Search",
-                    link: "search",
+                    link: "/contactus",
                   },
                 ].map((item, index) =>
-                  item.name === "Services" ? (
+                  item.name === "Locations" ? (
+                    <Link to="" key={index}>
+                      <li
+                        onClick={() => {
+                          onLocationPress();
+                          setNav(0);
+                        }}
+                        style={{
+                          cursor: "pointer",
+                          padding: "10px 0px 10px 0px",
+                        }}
+                      >
+                        {item.name}
+                      </li>
+                    </Link>
+                  ) : item.name === "Services" ? (
                     <Link to="" key={index}>
                       <li
                         onClick={() => {
@@ -169,7 +185,7 @@ export default function CNavbar({ desktopStyle }) {
                     style={{
                       fontSize: "14px",
                       textAlign: "left",
-
+                      cursor: "pointer",
                       color: colors.white,
                       borderWidth: "0px 0px 1px 0px",
                       paddingBottom: "3px",
@@ -177,7 +193,16 @@ export default function CNavbar({ desktopStyle }) {
                       borderStyle: "solid",
                     }}
                   >
-                    {item}
+                    <Link
+                      style={{
+                        color: "#ffffff",
+                      }}
+                      to={`/services/${item
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}
+                    >
+                      {item}
+                    </Link>
                   </p>
                 ))}
               </Col>
@@ -195,6 +220,7 @@ export default function CNavbar({ desktopStyle }) {
                   <p
                     key={index}
                     style={{
+                      cursor: "pointer",
                       fontSize: "14px",
                       textAlign: "left",
                       color: colors.white,
@@ -204,7 +230,16 @@ export default function CNavbar({ desktopStyle }) {
                       borderStyle: "solid",
                     }}
                   >
-                    {item}
+                    <Link
+                      style={{
+                        color: "#ffffff",
+                      }}
+                      to={`/services/${item
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}
+                    >
+                      {item}
+                    </Link>
                   </p>
                 ))}
               </Col>
@@ -218,7 +253,7 @@ export default function CNavbar({ desktopStyle }) {
           className="myheader"
           style={{
             alignItems: "center",
-            marginTop: "20px",
+            marginTop: marginTop,
             marginBottom: "20px",
             marginLeft: "0px",
           }}
@@ -238,164 +273,199 @@ export default function CNavbar({ desktopStyle }) {
                 listStyle: "none",
                 display: "flex",
                 fontSize: "15px",
-                justifyContent: "space-between",
               }}
             >
               {[
                 {
                   name: "Some Day Couriers",
-                  link: "some-day-courier",
+                  link: "/",
                 },
                 {
                   name: "Services",
-                  link: "services",
+                  link: "/services",
                 },
                 {
                   name: "Locations",
-                  link: "locations",
+                  link: "/locations",
                 },
-                {
-                  name: "Trade Accounts",
-                  link: "trade-accounts",
-                },
+
                 {
                   name: "About",
-                  link: "aboutus",
+                  link: "/aboutus",
                 },
                 {
                   name: "Contact",
-                  link: "contactus",
+                  link: "/contactus",
                 },
-                {
-                  name: "Search",
-                  link: "search",
-                },
-              ].map((item, index) =>
-                item.name === "Search" ? (
-                  <BsSearch />
-                ) : item.name !== "Services" ? (
-                  <li
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  >
-                    <Link to={item.link}>{item.name}</Link>
-                  </li>
-                ) : (
-                  <Link key={index} to="">
+              ].map((item, index) => (
+                <div
+                  style={{
+                    marginRight: "40px",
+                  }}
+                  key={index}
+                >
+                  {item.name === "Locations" ? (
+                    <Link to="" key={index}>
+                      <li
+                        onClick={onLocationPress}
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      >
+                        {item.name}
+                      </li>
+                    </Link>
+                  ) : item.name !== "Services" ? (
                     <li
                       style={{
                         cursor: "pointer",
                       }}
-                      onMouseEnter={() => {
-                        setMenu(true);
-                      }}
-                      onMouseLeave={() => {
-                        setMenu(false);
-                      }}
                     >
-                      {item.name}
-
-                      {menu && (
-                        <div
-                          onMouseEnter={() => {
-                            setMenu(true);
-                          }}
-                          onMouseLeave={() => {
+                      <Link to={item.link}>{item.name}</Link>
+                    </li>
+                  ) : (
+                    <Link key={index} to="">
+                      <li
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        onMouseEnter={() => {
+                          setMenu(true);
+                        }}
+                        onMouseLeave={() => {
+                          setTimeout(() => {
                             setMenu(false);
-                          }}
-                          style={{
-                            position: "absolute",
-                            backgroundColor: colors.blue,
+                          }, 1500);
+                        }}
+                      >
+                        {item.name}
 
-                            top: "110px",
-                            marginLeft: "10px",
-                          }}
-                        >
-                          <Row
+                        {menu && (
+                          <div
+                            onMouseEnter={() => {
+                              setMenu(true);
+                            }}
+                            onMouseLeave={() => {
+                              setMenu(false);
+                            }}
                             style={{
+                              position: "absolute",
                               backgroundColor: colors.blue,
 
-                              padding: "20px",
+                              top: "120px",
+                              marginLeft: "0px",
                             }}
                           >
-                            <Col
+                            <Row
                               style={{
-                                display: "flex",
+                                backgroundColor: colors.blue,
 
-                                flexDirection: "column",
+                                padding: "20px",
                               }}
-                              sm={6}
-                              md={6}
-                              lg={6}
-                              xl={6}
-                              xs={6}
                             >
-                              <p
+                              <Col
                                 style={{
-                                  fontSize: "20px",
-                                  fontWeight: "700",
-                                  color: colors.white,
-                                  borderWidth: "0px 0px 1px 0px",
+                                  display: "flex",
 
-                                  borderStyle: "solid",
-                                  marginBottom: "20px",
-                                  borderColor: "#FFFFFF27",
+                                  flexDirection: "column",
                                 }}
+                                sm={6}
+                                md={6}
+                                lg={6}
+                                xl={6}
+                                xs={6}
                               >
-                                Services
-                              </p>
-                              {links.map((item, index) => (
                                 <p
-                                  key={index}
                                   style={{
-                                    fontSize: "14px",
-
+                                    fontSize: "20px",
+                                    fontWeight: "700",
                                     color: colors.white,
                                     borderWidth: "0px 0px 1px 0px",
-                                    paddingBottom: "3px",
-                                    borderColor: "#FFFFFF27",
+
                                     borderStyle: "solid",
+                                    marginBottom: "20px",
+                                    borderColor: "#FFFFFF27",
                                   }}
                                 >
-                                  {item}
+                                  Services
                                 </p>
-                              ))}
-                            </Col>
-                            <Col style={{}} sm={6} md={6} lg={6} xl={6} xs={6}>
-                              <p
-                                style={{
-                                  fontSize: "20px",
-                                  fontWeight: "700",
-                                  color: colors.white,
-                                  paddingTop: "30px",
-                                }}
-                              />
+                                {links.map((item, index) => (
+                                  <p
+                                    key={index}
+                                    style={{
+                                      fontSize: "14px",
 
-                              {link1.map((item, index) => (
+                                      color: colors.white,
+                                      borderWidth: "0px 0px 1px 0px",
+                                      paddingBottom: "3px",
+                                      borderColor: "#FFFFFF27",
+                                      borderStyle: "solid",
+                                    }}
+                                  >
+                                    <Link
+                                      style={{
+                                        color: "#ffffff",
+                                      }}
+                                      to={`/services/${item
+                                        .toLowerCase()
+                                        .replace(/\s+/g, "-")}`}
+                                    >
+                                      {item}
+                                    </Link>
+                                  </p>
+                                ))}
+                              </Col>
+                              <Col
+                                style={{}}
+                                sm={6}
+                                md={6}
+                                lg={6}
+                                xl={6}
+                                xs={6}
+                              >
                                 <p
-                                  key={index}
                                   style={{
-                                    fontSize: "14px",
-
+                                    fontSize: "20px",
+                                    fontWeight: "700",
                                     color: colors.white,
-                                    borderWidth: "0px 0px 1px 0px",
-                                    paddingBottom: "3px",
-                                    borderColor: "#FFFFFF27",
-                                    borderStyle: "solid",
+                                    paddingTop: "30px",
                                   }}
-                                >
-                                  {item}
-                                </p>
-                              ))}
-                            </Col>
-                          </Row>
-                        </div>
-                      )}
-                    </li>
-                  </Link>
-                )
-              )}
+                                />
+
+                                {link1.map((item, index) => (
+                                  <p
+                                    key={index}
+                                    style={{
+                                      fontSize: "14px",
+
+                                      color: colors.white,
+                                      borderWidth: "0px 0px 1px 0px",
+                                      paddingBottom: "3px",
+                                      borderColor: "#FFFFFF27",
+                                      borderStyle: "solid",
+                                    }}
+                                  >
+                                    <Link
+                                      style={{
+                                        color: "#ffffff",
+                                      }}
+                                      to={`/services/${item
+                                        .toLowerCase()
+                                        .replace(/\s+/g, "-")}`}
+                                    >
+                                      {item}
+                                    </Link>
+                                  </p>
+                                ))}
+                              </Col>
+                            </Row>
+                          </div>
+                        )}
+                      </li>
+                    </Link>
+                  )}
+                </div>
+              ))}
             </ul>
           </Col>
         </Row>

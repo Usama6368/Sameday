@@ -4,6 +4,7 @@ import { routes } from "./routes";
 import Footer from "./Layout/Footer/Footer";
 import Header from "./Layout/Header/Header";
 import "./App.css";
+import Whatsapp from "./WhatsApp/Whatsapp";
 export default function App() {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ export default function App() {
           <Route key={item.path} path={item.path} element={item.element} />
         ))}
       </Routes>
+      <Whatsapp />
       <Footer />
     </BrowserRouter>
   );

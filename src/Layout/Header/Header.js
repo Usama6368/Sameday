@@ -144,9 +144,15 @@ import colors from "../../config/colors";
 import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import "./Header.css";
 function Header() {
+  const navigation = useNavigate();
+  const fontSize = "1.2vw";
+
   return (
     <Row
+      className="topheader"
       style={{
         backgroundColor: colors.blue,
         color: colors.white,
@@ -156,7 +162,7 @@ function Header() {
     >
       <div
         style={{
-          width: "85%",
+          width: "87%",
           display: "flex",
           alignItems: "center",
         }}
@@ -167,7 +173,7 @@ function Header() {
             listStyle: "none",
             display: "flex",
             alignItems: "center",
-            fontSize: "1.5vw",
+            fontSize: fontSize,
             marginBottom: "0px",
           }}
         >
@@ -184,30 +190,26 @@ function Header() {
             {
               name: "0800 102 6025",
             },
-          ].map((item, index) =>
-            item.name === "Search" ? (
-              <BsSearch />
-            ) : (
-              <li
-                style={{
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              >
-                {item.name}
-                {index === 0 && (
-                  <BiChevronDown
-                    style={{
-                      marginLeft: "5px",
-                    }}
-                  />
-                )}
-              </li>
-            )
-          )}
+          ].map((item, index) => (
+            <li
+              style={{
+                cursor: "pointer",
+                marginRight: "15px",
+              }}
+            >
+              {item.name}
+              {index === 0 && (
+                <BiChevronDown
+                  style={{
+                    marginLeft: "5px",
+                  }}
+                />
+              )}
+            </li>
+          ))}
           <li
             style={{
-              marginLeft: "10vw",
+              marginLeft: "22vw",
             }}
           >
             <ul
@@ -224,43 +226,49 @@ function Header() {
             >
               <li
                 style={{
-                  marginRight: "5px",
+                  marginRight: "10px",
                 }}
               >
-                <FaFacebookF size={"1.5vw"} color={colors.white} />
+                <FaFacebookF size={fontSize} color={colors.white} />
               </li>
               <li
                 style={{
-                  marginRight: "5px",
+                  marginRight: "10px",
                 }}
               >
-                <BsInstagram size={"1.5vw"} color={colors.white} />
+                <BsInstagram size={fontSize} color={colors.white} />
               </li>
               <li
                 style={{
-                  marginRight: "5px",
+                  marginRight: "10px",
                 }}
               >
-                <BsTwitter size={"1.5vw"} color={colors.white} />
+                <BsTwitter size={fontSize} color={colors.white} />
               </li>
               <li>
-                <FaLinkedinIn size={"1.5vw"} color={colors.white} />
+                <FaLinkedinIn size={fontSize} color={colors.white} />
               </li>
             </ul>
           </li>
         </ul>
       </div>
       <div
+        onClick={() => {
+          navigation("/quote");
+          window.scrollTo(0, 0);
+        }}
         style={{
-          width: "15%",
+          width: "13%",
           backgroundColor: "#1A1F60",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          fontSize: "1vw",
-          height: "50px",
+          fontSize: fontSize,
+          height: "75px",
           fontWeight: "bold",
-          fontSize: "1vw",
+          textAlign: "center",
+
+          cursor: "pointer",
         }}
       >
         Get A free Quote
