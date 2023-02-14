@@ -185,7 +185,7 @@ function Services() {
         <br />
         <br />
 
-        {serviceArray[id].map((item, index) => (
+        {serviceArray[id]?.map((item, index) => (
           <React.Fragment key={index}>
             {item}
             <br />

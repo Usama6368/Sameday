@@ -317,7 +317,7 @@ function Quote({ id, backgroundColor = "#00000040" }) {
                     <Form.Control
                       className="form-control"
                       style={inputStyle}
-                      type="number"
+                      type="text"
                       name="pickUp"
                       value={values.pickUp}
                       onChange={handleChange}
@@ -337,7 +337,7 @@ function Quote({ id, backgroundColor = "#00000040" }) {
                       className="form-control"
                       onBlur={handleBlur("dropOff")}
                       style={inputStyle}
-                      type="number"
+                      type="text"
                       name="dropOff"
                       value={values.dropOff}
                       onChange={handleChange}
