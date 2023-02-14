@@ -332,11 +332,6 @@ export default function CNavbar({
                         onMouseEnter={() => {
                           setMenu(true);
                         }}
-                        onMouseLeave={() => {
-                          setTimeout(() => {
-                            setMenu(false);
-                          }, 1500);
-                        }}
                       >
                         {item.name}
 
