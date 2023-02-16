@@ -100,10 +100,20 @@ function Quote({ id, backgroundColor = "#00000040" }) {
         {error}
       </small>
     );
+  const regex =
+    /^([A-Za-z][A-Ha-hJ-Yj-y]?[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}|[Gg][Ii][Rr] ?0[Aa]{2})$/;
   const validationSchema = yup.object({
     car: yup.string().required().label("Car"),
-    pickUp: yup.string().length(4).required().label("Pick Up"),
-    dropOff: yup.string().length(4).required().label("Drop Off"),
+    pickUp: yup
+      .string()
+      .matches(regex, "Invalid PickUp code")
+      .required()
+      .label("Pick Up"),
+    dropOff: yup
+      .string()
+      .matches(regex, "Invalid DropOff code")
+      .required()
+      .label("Drop Off"),
 
     collecting: yup.string().required().label("Collecting"),
     time: yup.string().required().label("Time"),

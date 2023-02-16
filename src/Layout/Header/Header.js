@@ -179,9 +179,6 @@ function Header() {
         >
           {[
             {
-              name: "New York",
-            },
-            {
               name: "Office Hours: 24 / 7 Days A Week",
             },
             {

@@ -135,7 +135,7 @@ export default function Section2() {
           ))}
         </Row>
       </Row>
-      <br />
+      {/* <br />
       <Row
         style={{
           justifyContent: "center",
@@ -147,7 +147,7 @@ export default function Section2() {
         >
           More Service
         </Button>
-      </Row>
+      </Row> */}
       <br />
     </>
   );

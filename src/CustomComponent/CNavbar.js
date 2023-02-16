@@ -3,8 +3,9 @@ import { Col, Row } from "react-bootstrap";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import colors from "../config/colors";
+import { link1, links, pages } from "../config/data";
 import "./CNavbar.css";
 export default function CNavbar({
   desktopStyle,
@@ -13,26 +14,8 @@ export default function CNavbar({
 }) {
   const [nav, setNav] = useState(0);
   const [menu, setMenu] = useState(false);
-  const navigate = useNavigate();
 
-  const links = [
-    "Same Day Courier",
-    "Urgent Courier Service",
-    "Scheduled Couriers",
-    "Same Day Business Couriers",
-    "Last Mile Delivery",
-  ];
-
-  const link1 = [
-    "Pallet Courier Service",
-    "Refrigerated Courier Service",
-    "Legal & Documents Courier",
-    "Medical Courier Service",
-    "Engineering Parts Courier",
-    "Hazardous Goods Couriers",
-    "High Value & Fragile Goods",
-    "Hiab & Moffett Mounty Couriers",
-  ];
+  const { pathname } = useLocation();
 
   // str.replace(/-+/g, " ").toUpperCase();
 
@@ -81,29 +64,7 @@ export default function CNavbar({
                   textAlign: "left",
                 }}
               >
-                {[
-                  {
-                    name: "Some Day Couriers",
-                    link: "/",
-                  },
-                  {
-                    name: "Services",
-                    link: "/services",
-                  },
-                  {
-                    name: "Locations",
-                    link: "/locations",
-                  },
-
-                  {
-                    name: "About",
-                    link: "/aboutus",
-                  },
-                  {
-                    name: "Contact",
-                    link: "/contactus",
-                  },
-                ].map((item, index) =>
+                {pages.map((item, index) =>
                   item.name === "Locations" ? (
                     <Link to="" key={index}>
                       <li
@@ -266,7 +227,7 @@ export default function CNavbar({
           </Col>
           <br />
 
-          <Col style={{}} xs={12} sm={12} lg={8} md={12} xl={8}>
+          <Col xs={12} sm={12} lg={8} md={12} xl={8}>
             <ul
               style={{
                 color: colors.white,
@@ -275,29 +236,7 @@ export default function CNavbar({
                 fontSize: "15px",
               }}
             >
-              {[
-                {
-                  name: "Some Day Couriers",
-                  link: "/",
-                },
-                {
-                  name: "Services",
-                  link: "/services",
-                },
-                {
-                  name: "Locations",
-                  link: "/locations",
-                },
-
-                {
-                  name: "About",
-                  link: "/aboutus",
-                },
-                {
-                  name: "Contact",
-                  link: "/contactus",
-                },
-              ].map((item, index) => (
+              {pages.map((item, index) => (
                 <div
                   style={{
                     marginRight: "40px",
