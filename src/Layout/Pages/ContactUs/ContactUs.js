@@ -12,8 +12,11 @@ import myImage from "../../../assets/bg1.png";
 import CBackgorundImage from "../../../CustomComponent/CBackgorundImage";
 import { Formik } from "formik";
 import "./Contact.css";
+import CAnimationView from "../../../CustomComponent/CAnimationView";
+import { useAlert } from "react-alert";
 function ContactUs() {
   const [loader, setLoader] = useState(false);
+  const alert = useAlert();
   const defaultProps = {
     center: {
       lat: 10.99835602,
@@ -43,10 +46,10 @@ function ContactUs() {
   const validationSchema = yup.object({
     name: yup.string().max(20).min(3).required().label("Name"),
     email: yup.string().email().required().label("Email"),
-    message: yup.string().max(50).required().label("Message"),
+    message: yup.string().max(500).required().label("Message"),
   });
   return (
-    <>
+    <CAnimationView>
       <CBackgorundImage heading={"Contact Us"} detail={"Get In Touch"} />
       <Row>
         {arr.map((item, index) => (
@@ -84,10 +87,39 @@ function ContactUs() {
         onSubmit={(value, { resetForm }) => {
           setLoader(true);
           console.log(value);
-          setTimeout(() => {
-            setLoader(false);
-            resetForm();
-          }, 2000);
+
+          var formdata = new FormData();
+          formdata.append("name", value.name);
+          formdata.append("email", value.email);
+          formdata.append("body", value.message);
+          var requestOptions = {
+            method: "POST",
+            body: formdata,
+            redirect: "follow",
+          };
+          fetch(
+            "https://admin.samedayexpresscouriers.co.uk/api/contact-us",
+            requestOptions
+          )
+            .then((response) => response.json())
+            .then((result) => {
+              console.log(result);
+
+              if (result.success) {
+                alert.success("Message Delivered !");
+                resetForm();
+              } else {
+                alert(result.message);
+              }
+            })
+            .catch((error) => {
+              console.log("error", error);
+              alert.error("Something went wrong !");
+            })
+            .finally(() => {
+              setLoader(false);
+              resetForm();
+            });
         }}
       >
         {({
@@ -199,6 +231,7 @@ function ContactUs() {
             lat: 10.99835602,
             lng: 77.01502627,
           }}
+          
           defaultZoom="11"
         ></GoogleMapReact>
       </Row> */}
@@ -239,7 +272,7 @@ function ContactUs() {
           </li>
         </ul>
       </Row>
-    </>
+    </CAnimationView>
   );
 }
 

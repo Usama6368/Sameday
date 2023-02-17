@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { BsNutFill } from "react-icons/bs";
 import colors from "../../../config/colors";
+import CAnimationView from "../../../CustomComponent/CAnimationView";
 import LandingPage from "./SubComponent/LandingPage";
 
 import Section1 from "./SubComponent/Section1";
@@ -14,7 +15,7 @@ import Testomonials from "./SubComponent/Testomonials";
 export default function Home() {
   const ref = useRef(null);
   return (
-    <React.Fragment>
+    <CAnimationView>
       <LandingPage
         onLocationPress={() =>
           ref.current.scrollIntoView({ behavior: "smooth" })
@@ -48,6 +49,6 @@ export default function Home() {
       <br />
       <Section6 />
       <br />
-    </React.Fragment>
+    </CAnimationView>
   );
 }

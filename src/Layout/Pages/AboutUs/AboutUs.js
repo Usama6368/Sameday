@@ -2,6 +2,7 @@ import React from "react";
 import { Accordion, Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import colors from "../../../config/colors";
+import CAnimationView from "../../../CustomComponent/CAnimationView";
 import CBackgorundImage from "../../../CustomComponent/CBackgorundImage";
 
 function AboutUs() {
@@ -64,7 +65,7 @@ function AboutUs() {
     },
   ];
   return (
-    <>
+    <CAnimationView>
       <CBackgorundImage heading={"About Us"} detail={"Out Little Story"} />
 
       <div
@@ -201,7 +202,7 @@ function AboutUs() {
           </Accordion>
         </Col>
       </Row>
-    </>
+    </CAnimationView>
   );
 }
 

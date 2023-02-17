@@ -8,6 +8,7 @@ import Section4 from "../Home/SubComponent/Section4";
 import Testomonials from "../Home/SubComponent/Testomonials";
 import parse from "html-react-parser";
 import { serviceArray } from "../../../config/data";
+import CAnimationView from "../../../CustomComponent/CAnimationView";
 function Services() {
   const { id } = useParams();
 
@@ -40,7 +41,7 @@ function Services() {
       .catch((error) => console.log("error", error));
   }, []);
   return (
-    <>
+    <CAnimationView>
       <LandingPage
         onLocationPress={() =>
           ref.current.scrollIntoView({ behavior: "smooth" })
@@ -152,7 +153,7 @@ function Services() {
               <th>Length</th>
               <th>Width</th>
               <th>Height</th>
-              <th style={{}}> Pallets *</th>
+              <th colSpan={2}> Pallets *</th>
             </tr>
 
             <tr
@@ -213,7 +214,7 @@ function Services() {
         <br />
         <br />
       </div>
-    </>
+    </CAnimationView>
   );
 }
 

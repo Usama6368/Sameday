@@ -4,9 +4,10 @@ import img from "../../../assets/bg1.png";
 import Section1 from "../Home/SubComponent/Section1";
 import colors from "../../../config/colors";
 import CNavbar from "../../../CustomComponent/CNavbar";
+import CAnimationView from "../../../CustomComponent/CAnimationView";
 export default function Form() {
   return (
-    <>
+    <CAnimationView>
       <div
         style={{
           backgroundImage: `url(${img})`,
@@ -45,6 +46,6 @@ export default function Form() {
       <br />
       <Section1 marginTop="0px" />
       <br />
-    </>
+    </CAnimationView>
   );
 }

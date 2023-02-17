@@ -177,7 +177,10 @@ function Quote({ id, backgroundColor = "#00000040" }) {
               alert(result.message);
             }
           })
-          .catch((error) => console.log("error", error))
+          .catch((error) => {
+            console.log("error", error);
+            alert.error("Something went wrong !");
+          })
           .finally(() => {
             setLoader(false);
           });
