@@ -11,7 +11,7 @@ export default function Form() {
       <div
         style={{
           backgroundImage: `url(${img})`,
-          padding: "20px 2vw 20px 2vw",
+          padding: "20px 80px 0px 80px",
         }}
       >
         <CNavbar marginTop="0px" />

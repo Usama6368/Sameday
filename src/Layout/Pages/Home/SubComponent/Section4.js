@@ -46,11 +46,20 @@ export default function Section4() {
           Our Locations
         </span>
         <br />
-        <span style={{ textAlign: "center", margin: "20px 0px 20px 0px" }}>
-          Collect Same Day Couriers are a local & nationwide courier service.
-          Whether you want your parcel delivering from London to Manchester, or
-          Glasgow to Southampton – We can deliver, the same day!
-        </span>
+        <div className="d-flex justify-content-center">
+          <Row
+            style={{
+              width: "55vw",
+            }}
+          >
+            <span style={{ textAlign: "center", margin: "20px 0px 20px 0px" }}>
+              Collect Same Day Couriers are a local & nationwide courier
+              service. Whether you want your parcel delivering from London to
+              Manchester, or Glasgow to Southampton – We can deliver, the same
+              day!
+            </span>
+          </Row>
+        </div>
         <br />
       </Row>
       <Row

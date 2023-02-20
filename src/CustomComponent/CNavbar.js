@@ -286,7 +286,7 @@ export default function CNavbar({
                               position: "absolute",
                               backgroundColor: colors.blue,
 
-                              top: "120px",
+                              top: "8rem",
                               marginLeft: "0px",
                             }}
                           >

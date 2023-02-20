@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import colors from "../../../../config/colors";
 export default function Section2() {
+  const navigation = useNavigate();
   return (
     <>
       <Row
@@ -44,37 +46,37 @@ export default function Section2() {
               name: "Same Day Courier",
               detail:
                 "Focused on getting your urgent packages to their destination on the same day - guaranteed.",
-              link: "1",
+              link: "same-day-courier",
             },
             {
               name: "Urgent Courier Service",
               detail:
                 "Focused on getting your urgent packages to their destination in the shortest possible time.",
-              link: "2",
+              link: "urgent-courier-service",
             },
             {
               name: "Business Contract Work",
               detail:
                 "Collect Same Day Couriers provides fully flexible same day courier services 24/7/365.",
-              link: "3",
+              link: "same-day-business-couriers",
             },
             {
               name: "Scheduled Couriers",
               detail:
                 "From planned deliveries, to scheduled routes or a last-minute request, we’ve got you covered.",
-              link: "4",
+              link: "scheduled-couriers",
             },
             {
               name: "Pallet Courier Service",
               detail:
                 "Dedicated pallet courier transporting palletised goods-big or small. UK pallet delivery service.",
-              link: "5",
+              link: "pallet-courier-service",
             },
             {
               name: "Legal Documents Courier",
               detail:
                 "Need a letter or a document delivering on an urgent or time critical basis",
-              link: "6",
+              link: "legal-&-documents-courier",
             },
           ].map((item, index) => (
             <Col key={index} sm={12} md={6} lg={4}>
@@ -121,11 +123,13 @@ export default function Section2() {
                 <br />
 
                 <span
+                  onClick={() => navigation(`/services/${item.link}`)}
                   style={{
                     fontSize: "16px",
                     textAlign: "center",
                     color: "#2F3690",
                     fontWeight: "bold",
+                    cursor: "pointer",
                   }}
                 >
                   Learn More

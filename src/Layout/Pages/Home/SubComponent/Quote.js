@@ -50,42 +50,42 @@ function Quote({ id, backgroundColor = "#00000040" }) {
     {
       id: 1,
       name: "Car",
-      image: require("../../../../assets/car.png"),
+      image: require("../../../../assets/car/car.png"),
     },
     {
       id: 2,
       name: "Small Van",
-      image: require("../../../../assets/small_van.png"),
+      image: require("../../../../assets/car/small_van.png"),
     },
     {
       id: 3,
       name: "Short Wheel Base",
-      image: require("../../../../assets/short.png"),
+      image: require("../../../../assets/car/short_wheel_base.png"),
     },
     {
       id: 4,
       name: "Long Wheel Base",
-      image: require("../../../../assets/long.png"),
+      image: require("../../../../assets/car/long_wheel_base.png"),
     },
     {
       id: 5,
       name: "XL Wheel Base",
-      image: require("../../../../assets/xl.png"),
+      image: require("../../../../assets/car/xl_wheel_base.png"),
     },
     {
       id: 6,
       name: "Luton - Tail Lift",
-      image: require("../../../../assets/luton.png"),
+      image: require("../../../../assets/car/luton.png"),
     },
     {
       id: 7,
       name: "7.5T Lorry",
-      image: require("../../../../assets/lorry.png"),
+      image: require("../../../../assets/car/75t.png"),
     },
     {
       id: 8,
       name: "Not Sure",
-      image: require("../../../../assets/not_sure.png"),
+      image: require("../../../../assets/car/not_sure.png"),
     },
   ];
 
@@ -299,7 +299,12 @@ function Quote({ id, backgroundColor = "#00000040" }) {
                       cursor: "pointer",
                     }}
                   >
-                    <img src={item.image} />
+                    <img
+                      style={{
+                        width: "70px",
+                      }}
+                      src={item.image}
+                    />
 
                     <span
                       style={{
@@ -436,10 +441,12 @@ function Quote({ id, backgroundColor = "#00000040" }) {
                         backgroundColor: "white",
                         textAlign: "center",
                         cursor: "pointer",
+                        color: "black",
                       }}
                     >
                       {timeList.map((item, index) => (
-                        <option
+                        <p
+                          className="py-1 m-0"
                           onClick={() => {
                             setFieldValue("time", item);
                             setTime(false);
@@ -448,7 +455,7 @@ function Quote({ id, backgroundColor = "#00000040" }) {
                           value={item}
                         >
                           {item}
-                        </option>
+                        </p>
                       ))}
                     </div>
                   )}
