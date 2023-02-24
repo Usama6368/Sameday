@@ -1,9 +1,10 @@
 import React from "react";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import "./Whatsapp.css";
+import info from "../config/info.json";
 export default function Whatsapp() {
   const handleClick = () => {
-    window.open("https://api.whatsapp.com/send?phone=923161424024", "_blank");
+    window.open(`https://api.whatsapp.com/send?phone=${info.phone}`, "_blank");
   };
   return (
     <div className="whatsapp-button-container">

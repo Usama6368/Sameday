@@ -6,11 +6,18 @@ import Quote from "./Quote";
 
 import "./Landing.css";
 import CNavbar from "../../../../CustomComponent/CNavbar";
-
+import info from "../../../../config/info.json";
+import {
+  locationHeaderArray,
+  serviceHeaderArray,
+} from "../../../../config/data";
+import { useLocation } from "react-router-dom";
 function LandingPage({ id, onLocationPress }) {
   const sm = 12;
   const lg = 6;
   const md = 6;
+
+  const { pathname } = useLocation();
 
   return (
     <div
@@ -21,35 +28,31 @@ function LandingPage({ id, onLocationPress }) {
       <Row className="main">
         <CNavbar onLocationPress={onLocationPress} />
         <Col className="same" style={{}} sm={sm} md={md} lg={lg}>
-          <p className="sameday">Same Day & Urgent Courier Services!</p>
-          <span
-            style={{
-              color: colors.white,
-              textAlign: "justify",
-            }}
-          >
-            {`Collect Same Day Couriers is your best choice for same day courier
-          services and provides excellent local & nationwide courier services at
-          affordable prices. We are the UK’s most reliable urgent & same day
-          courier service provider.`}
-          </span>
-          <br />
-          <br />
+          <p className="sameday">
+            {id
+              ? `${id.replace(/-/g, "  ")}!`
+              : "Same Day & Urgent Courier Services!"}
+          </p>
 
-          <span
-            style={{
-              color: colors.white,
-              textAlign: "justify",
-            }}
-          >
-            {`Collect Same Day Couriers is your best choice for same day courier
-          services and provides excellent local & nationwide courier services at
-          affordable prices. We are the UK’s most reliable urgent & same day
-          courier service provider.`}
-          </span>
-
-          <br />
-          <br />
+          {pathname.includes("location")
+            ? locationHeaderArray(id)
+            : serviceHeaderArray(id ? id : "same-day-courier").map(
+                (item, index) => (
+                  <React.Fragment key={index}>
+                    <span
+                      style={{
+                        color: colors.white,
+                        textAlign: "justify",
+                        textTransform: "capitalize",
+                      }}
+                    >
+                      {item}
+                    </span>
+                    <br />
+                    <br />
+                  </React.Fragment>
+                )
+              )}
 
           <span
             style={{
@@ -70,7 +73,7 @@ function LandingPage({ id, onLocationPress }) {
               fontWeight: "bold",
             }}
           >
-            0800 102 6025
+            {info.landline}
           </span>
         </Col>
         <Col sm={sm} md={md} lg={lg}>

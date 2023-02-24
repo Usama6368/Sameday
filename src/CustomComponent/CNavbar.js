@@ -220,10 +220,12 @@ export default function CNavbar({
           }}
         >
           <Col xs={12} sm={12} lg={4} md={12} xl={4}>
-            <img
-              style={{ height: "65px", width: "152px" }}
-              src={require("../assets/logo.png")}
-            />
+            <Link to="/">
+              <img
+                style={{ height: "65px", width: "152px", cursor: "pointer" }}
+                src={require("../assets/logo.png")}
+              />
+            </Link>
           </Col>
           <br />
 
@@ -414,10 +416,12 @@ export default function CNavbar({
         }}
       >
         <Col>
-          <img
-            style={{ height: "65px", width: "152px" }}
-            src={require("../assets/logo.png")}
-          />
+          <Link to="/">
+            <img
+              style={{ height: "65px", width: "152px", cursor: "pointer" }}
+              src={require("../assets/logo.png")}
+            />
+          </Link>
         </Col>
 
         <Col

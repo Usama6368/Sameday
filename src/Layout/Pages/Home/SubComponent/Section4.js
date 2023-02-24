@@ -1,12 +1,12 @@
-import React, { useRef } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
-import img1 from "../../../../assets/Rectangle17.png";
+import React from "react";
+import { Button, Col, Row } from "react-bootstrap";
 import img2 from "../../../../assets/Rectangle20.png";
 import img3 from "../../../../assets/Rectangle22.png";
 import colors from "../../../../config/colors";
-import { BsCheck, BsCheckCircleFill, BsCheckLg } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-export default function Section4() {
+import info from "../../../../config/info.json";
+import CCitySearch from "../../../../CustomComponent/CCitySearch";
+export default function Section4({ id }) {
   const navigation = useNavigate();
 
   const sm = 12;
@@ -19,18 +19,18 @@ export default function Section4() {
     paddingLeft: "0rem",
     paddingRight: "0rem",
   };
-  const heading = {
-    color: "black",
-    fontSize: "16px",
-  };
-  const inputStyle = {
-    backgroundColor: "#DCDCDC",
-    borderStyle: "none",
-    height: "35px",
-    borderRadius: "3px",
-    color: colors.white,
-    margin: "20px 0px 20px 0px",
-  };
+
+  function chunkArray(array, size) {
+    let result = [];
+    for (let i = 0; i < array.length; i += size) {
+      let chunk = array.slice(i, i + size);
+      result.push(chunk);
+    }
+    return result;
+  }
+
+  let popularCityArray = chunkArray(info.popular, 5);
+  let regionArray = chunkArray(info.regions, 3);
   return (
     <React.Fragment>
       <Row
@@ -82,51 +82,49 @@ export default function Section4() {
             <span style={{ color: colors.blue, fontWeight: 400 }}>
               Find a location near you
             </span>
-            <Form.Control style={inputStyle} type="text" />
+
+            <CCitySearch />
+
             <span style={{ color: colors.blue, fontWeight: 400 }}>
               Most popular
             </span>
             <br />
-            <br />
+
             <Row
               style={{
                 fontSize: "15px",
                 paddingLeft: "0px",
               }}
             >
-              <Col>
-                <ul style={ulStyle}>
-                  <li> London</li>
-
-                  <li>Edinburgh</li>
-
-                  <li>Manchester</li>
-                  <li>Birmingham</li>
-                  <li> Glasgow</li>
-                </ul>
-              </Col>
-              <Col>
-                <ul style={ulStyle}>
-                  <li>Liverpool</li>
-
-                  <li>Bristol</li>
-
-                  <li>Cambridge</li>
-                  <li>Cardiff</li>
-                  <li> Leeds</li>
-                </ul>
-              </Col>
-              <Col>
-                <ul style={ulStyle}>
-                  <li> Bath</li>
-
-                  <li>Nottinghaml</li>
-
-                  <li>Southampton</li>
-                  <li>Newcastle</li>
-                  <li> Sheffield</li>
-                </ul>
-              </Col>
+              {popularCityArray.map((chunk, index) => (
+                <Col key={index} className="p-0">
+                  <ul style={ulStyle}>
+                    {chunk.map((item, index) => (
+                      <li
+                        style={{
+                          cursor: "pointer",
+                          fontWeight:
+                            id?.replace(/-/g, " ").toLowerCase() ===
+                            item.name.toLowerCase()
+                              ? "bold"
+                              : "normal",
+                        }}
+                        onClick={() => {
+                          navigation(
+                            `/location/${item.name
+                              .replace(/\s+/g, "-")
+                              .toLowerCase()}`
+                          );
+                          window.scrollTo(0, 0);
+                        }}
+                        key={index}
+                      >
+                        {item.name}
+                      </li>
+                    ))}
+                  </ul>
+                </Col>
+              ))}
             </Row>
             <span
               style={{
@@ -139,33 +137,42 @@ export default function Section4() {
             </span>
 
             <br />
-            <br />
-            <Row>
-              <Col>
-                <ul style={ulStyle}>
-                  <li> South West</li>
 
-                  <li>South East</li>
-
-                  <li>East Anglia</li>
-                </ul>
-              </Col>
-              <Col>
-                <ul style={ulStyle}>
-                  <li> West Midlands</li>
-
-                  <li>East Midlands</li>
-
-                  <li> Yorkshire</li>
-                </ul>
-              </Col>
-              <Col>
-                <ul style={ulStyle}>
-                  <li> North West</li>
-
-                  <li> North East</li>
-                </ul>
-              </Col>
+            <Row
+              style={{
+                fontSize: "15px",
+                paddingLeft: "0px",
+              }}
+            >
+              {regionArray.map((chunk, index) => (
+                <Col key={index} className="p-0 " sm={12} lg={4} md={4} xl={4}>
+                  <ul style={ulStyle}>
+                    {chunk.map((item, index) => (
+                      <li
+                        style={{
+                          cursor: "pointer",
+                          fontWeight:
+                            id?.replace(/-/g, " ").toLowerCase() ===
+                            item.toLowerCase()
+                              ? "bold"
+                              : "normal",
+                        }}
+                        onClick={() => {
+                          navigation(
+                            `/location/${item
+                              .replace(/\s+/g, "-")
+                              .toLowerCase()}`
+                          );
+                          window.scrollTo(0, 0);
+                        }}
+                        key={index}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </Col>
+              ))}
             </Row>
             <Button
               onClick={() => {
@@ -205,9 +212,7 @@ export default function Section4() {
             md={md}
             xl={xl}
           >
-            <span
-              style={{ fontWeight: 550, fontSize: "35px", fontWeight: "bold" }}
-            >
+            <span style={{ fontWeight: 550, fontSize: "35px" }}>
               Collect Same Day Couriers
             </span>
             <br />
@@ -242,16 +247,12 @@ export default function Section4() {
             </Button>
             <br />
 
-            <span
-              style={{ fontWeight: 550, fontSize: "25px", fontWeight: "bold" }}
-            >
+            <span style={{ fontWeight: 550, fontSize: "25px" }}>
               Call us now
             </span>
             <br />
-            <span
-              style={{ fontWeight: 550, fontSize: "35px", fontWeight: "bold" }}
-            >
-              0800 102 6025
+            <span style={{ fontWeight: 550, fontSize: "35px" }}>
+              {info.landline}
             </span>
           </Col>
         </Row>

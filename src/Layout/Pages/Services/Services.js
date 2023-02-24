@@ -9,37 +9,14 @@ import Testomonials from "../Home/SubComponent/Testomonials";
 import parse from "html-react-parser";
 import { serviceArray } from "../../../config/data";
 import CAnimationView from "../../../CustomComponent/CAnimationView";
+import info from "../../../config/info.json";
 function Services() {
   const { id } = useParams();
 
   const navigation = useNavigate();
-  const [data, setData] = useState({});
+
   const ref = useRef(null);
 
-  const heading = {
-    color: "black",
-    fontSize: "16px",
-  };
-
-  useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-    fetch(
-      "https://admin.samedayexpresscouriers.co.uk/api/service/same-day-express-couriers",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        setData(result[0]);
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
   return (
     <CAnimationView>
       <LandingPage
@@ -49,8 +26,8 @@ function Services() {
         id={id}
       />
 
-      <Testomonials />
-      {/* {parse(data?.description)} */}
+      {/* <Testomonials /> */}
+
       <div
         style={{
           padding: "50px 50px 50px 50px",
@@ -101,7 +78,7 @@ function Services() {
               fontWeight: "bold",
             }}
           >
-            0800 102 6025
+            {info.landline}
           </b>{" "}
           or you can email us at{" "}
           <b
@@ -112,7 +89,7 @@ function Services() {
               fontSize: "17px",
             }}
           >
-            info@collectsameday.co.uk
+            {info.email}
           </b>
           . Alternatively you can complete the quote form.
         </span>

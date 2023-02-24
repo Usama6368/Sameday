@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import colors from "../../../../config/colors";
-
+import info from "../../../../config/info.json";
 export default function Section8() {
   const navigation = useNavigate();
   return (
@@ -55,7 +55,7 @@ export default function Section8() {
                 marginLeft: "10px",
               }}
             >
-              0800 102 6025
+              {info.landline}
             </span>
           </div>
         </Col>

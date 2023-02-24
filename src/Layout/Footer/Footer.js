@@ -5,7 +5,7 @@ import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 import Section8 from "../Pages/Home/SubComponent/Section8";
 import { Link, useLocation } from "react-router-dom";
-
+import info from "../../config/info.json";
 function Footer({ show }) {
   const sm = 12;
   const xs = 12;
@@ -52,10 +52,12 @@ function Footer({ show }) {
           xl={xl}
           xs={xs}
         >
-          <img
-            style={{ height: "68.84px", width: "160px" }}
-            src={require("../../assets/logo.png")}
-          />
+          <Link onClick={() => window.scrollTo(0, 0)} to="/">
+            <img
+              style={{ height: "68.84px", width: "160px", cursor: "pointer" }}
+              src={require("../../assets/logo.png")}
+            />
+          </Link>
           <p
             style={{
               marginTop: "50px",
@@ -132,12 +134,12 @@ function Footer({ show }) {
 
           <p
             style={{
-              fontSize: "16px",
+              fontSize: "13px",
 
               color: colors.white,
             }}
           >
-            info@collectsameday.co.uk <br /> 0800 102 6025
+            {info.email + "\n" + info.landline}
           </p>
         </Col>
         <Col

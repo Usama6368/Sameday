@@ -44,8 +44,8 @@ export default function Home() {
         </Row>
       </Row>
 
-      <br />
-      <Testomonials />
+      {/* <br />
+      <Testomonials /> */}
       <br />
       <Section6 />
       <br />

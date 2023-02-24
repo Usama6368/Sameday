@@ -7,6 +7,7 @@ import * as yup from "yup";
 import "./Quotes.css";
 import { formatString } from "../../../../functions/javascript";
 import { useAlert } from "react-alert";
+import { useLocation } from "react-router-dom";
 const inputStyle = {
   backgroundColor: "#626262",
   borderStyle: "none",
@@ -29,10 +30,10 @@ const buttonStyle = {
   borderRadius: 0,
 };
 function Quote({ id, backgroundColor = "#00000040" }) {
-  console.log(id);
   const alert = useAlert();
   const [loader, setLoader] = useState(false);
   const [time, setTime] = useState(false);
+  const { pathname } = useLocation();
 
   var timeList = [];
   for (var i = 0; i < 24; i++) {
@@ -144,15 +145,23 @@ function Quote({ id, backgroundColor = "#00000040" }) {
         var myHeaders = new Headers();
         myHeaders.append("Accept", "application/json");
         var formdata = new FormData();
+
+        // let loc = pathname.includes("location")
+        //   ? "location"
+        //   : pathname.includes("services")
+        //   ? "services"
+        //   : "general";
+
         formdata.append(
           "type",
           id === undefined ? "General" : formatString(id)
         );
+        formdata.append("isCity", pathname.includes("location") ? 1 : 0);
         formdata.append("van_size", values.car);
         formdata.append("pickup_post_code", values.pickUp);
         formdata.append("dropoff_post_code", values.dropOff);
         formdata.append("time_colllecting", values.time);
-        formdata.append("day_collection", values.collecting);
+        formdata.append("day_collection", values.collecting.toString());
         formdata.append("name", values.name);
         formdata.append("email", values.email);
         formdata.append("phone", values.phone);
@@ -408,7 +417,7 @@ function Quote({ id, backgroundColor = "#00000040" }) {
                       { id: 2, name: "Scheduled later" },
                       { id: 3, name: "Urgent ASAP" },
                     ].map((item, index) => (
-                      <option key={index} value={item.id}>
+                      <option key={index} value={item.name}>
                         {item.name}
                       </option>
                     ))}

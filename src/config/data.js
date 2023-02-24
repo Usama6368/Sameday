@@ -1,3 +1,6 @@
+import { formatString } from "../functions/javascript";
+import colors from "./colors";
+
 export const links = [
   "Same Day Courier",
   "Urgent Courier Service",
@@ -19,8 +22,8 @@ export const link1 = [
 
 export const pages = [
   {
-    name: "Some Day Couriers",
-    link: "/",
+    name: "Same Day Courier",
+    link: "/services/same-day-courier",
   },
   {
     name: "Services",
@@ -143,5 +146,308 @@ export const serviceArray = {
   "hazardous-goods-couriers": [],
   "high-value-&-fragile-goods": [],
   "hiab-&-moffett-mounty-couriers": [],
-  "scheduled-couriers": [],
+  "same-day-pallet-couriers": [],
+  "same-day-it-equipment-couriers": [],
+  "same-day-construction-couriers": [],
+  "same-day-document-couriers": [],
+  "same-day-medical-couriers": [],
+};
+
+export const serviceHeaderArray = (id) => {
+  let arr = {
+    "same-day-courier": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+
+    "urgent-courier-service": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )}Couriers is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} Couriers is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+
+    "scheduled-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "same-day-business-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "last-mile-delivery": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "pallet-courier-service": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "refrigerated-courier-service": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "legal-&-documents-courier": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "medical-courier-service": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "engineering-parts-courier": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "hazardous-goods-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "high-value-&-fragile-goods": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "hiab-&-moffett-mounty-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+
+    "same-day-pallet-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "same-day-it-equipment-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "same-day-construction-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "same-day-document-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+    "same-day-medical-couriers": [
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+      `Collect ${id.replace(
+        /-/g,
+        "  "
+      )} is your best choice for same day courier services and provides excellent local & nationwide courier services at affordable prices. We are the UK’s most reliable urgent & same day courier service provider.`,
+    ],
+  };
+  return arr[id];
+};
+
+export const locationHeaderArray = (id) => {
+  let arr = (
+    <>
+      <span
+        style={{
+          color: colors.white,
+          textAlign: "justify",
+        }}
+      >
+        Collect
+        <b
+          className="mx-1"
+          style={{
+            fontWeight: "bold",
+            color: colors.white,
+            textTransform: "capitalize",
+          }}
+        >
+          {formatString(id)}
+        </b>
+        is your best choice for same day courier services and provides excellent
+        local & nationwide courier services at affordable prices. We are the
+        UK’s most reliable urgent & same day courier service provider.
+      </span>
+      <br />
+      <br />
+      <span
+        style={{
+          color: colors.white,
+          textAlign: "justify",
+        }}
+      >
+        Collect
+        <b
+          className="mx-1"
+          style={{
+            fontWeight: "bold",
+            color: colors.white,
+            textTransform: "capitalize",
+          }}
+        >
+          {formatString(id)}
+        </b>
+        is your best choice for same day courier services and provides excellent
+        local & nationwide courier services at affordable prices. We are the
+        UK’s most reliable urgent & same day courier service provider.
+      </span>
+      <br />
+      <br />
+    </>
+  );
+
+  return arr;
+};
+
+export const locationSectionHeader = (id) => {
+  let arr = (
+    <>
+      <span
+        style={{
+          color: "#000000",
+          textAlign: "justify",
+        }}
+      >
+        Collect
+        <b
+          className="mx-1"
+          style={{
+            fontWeight: "bold",
+            color: colors.blue,
+            textTransform: "capitalize",
+          }}
+        >
+          {formatString(id)}
+        </b>
+        is your best choice for same day courier services and provides excellent
+        local & nationwide courier services at affordable prices. We are the
+        UK’s most reliable urgent & same day courier service provider.
+      </span>
+      <br />
+      <br />
+      <span
+        style={{
+          color: "#000000",
+          textAlign: "justify",
+        }}
+      >
+        Collect
+        <b
+          className="mx-1"
+          style={{
+            fontWeight: "bold",
+            color: colors.blue,
+            textTransform: "capitalize",
+          }}
+        >
+          {formatString(id)}
+        </b>
+        is your best choice for same day courier services and provides excellent
+        local & nationwide courier services at affordable prices. We are the
+        UK’s most reliable urgent & same day courier service provider.
+      </span>
+      <br />
+      <br />
+    </>
+  );
+
+  return arr;
 };

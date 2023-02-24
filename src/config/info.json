@@ -1,0 +1,364 @@
+{
+    "phone": "07538340033",
+    "landline": "020 4568 4675",
+    "email":"info@samedayexpresscouriers.co.uk",
+    "cities": [
+        {
+            "serial_no": 1,
+            "name": "London"
+        },
+        {
+            "serial_no": 2,
+            "name": "Manchester"
+        },
+        {
+            "serial_no": 3,
+            "name": "Birmingham"
+        },
+        {
+            "serial_no": 4,
+            "name": "Liverpool"
+        },
+        {
+            "serial_no": 5,
+            "name": "Glasgow"
+        },
+        {
+            "serial_no": 6,
+            "name": "Edinburgh"
+        },
+        {
+            "serial_no": 7,
+            "name": "Bristol"
+        },
+        {
+            "serial_no": 8,
+            "name": "Belfast"
+        },
+        {
+            "serial_no": 9,
+            "name": "Leeds"
+        },
+        {
+            "serial_no": 10,
+            "name": "Sheffield"
+        },
+        {
+            "serial_no": 11,
+            "name": "Newcastle upon Tyne"
+        },
+        {
+            "serial_no": 12,
+            "name": "Nottingham"
+        },
+        {
+            "serial_no": 13,
+            "name": "Southampton"
+        },
+        {
+            "serial_no": 14,
+            "name": "Portsmouth"
+        },
+        {
+            "serial_no": 15,
+            "name": "Cardiff"
+        },
+        {
+            "serial_no": 16,
+            "name": "Aberdeen"
+        },
+        {
+            "serial_no": 17,
+            "name": "Brighton and Hove"
+        },
+        {
+            "serial_no": 18,
+            "name": "Derby"
+        },
+        {
+            "serial_no": 19,
+            "name": "Coventry"
+        },
+        {
+            "serial_no": 20,
+            "name": "Plymouth"
+        },
+        {
+            "serial_no": 21,
+            "name": "Bath"
+        },
+        {
+            "serial_no": 22,
+            "name": "Bedford"
+        },
+        {
+            "serial_no": 23,
+            "name": "Bournemouth"
+        },
+        {
+            "serial_no": 24,
+            "name": "Bradford"
+        },
+        {
+            "serial_no": 25,
+            "name": "Cambridge"
+        },
+        {
+            "serial_no": 26,
+            "name": "Canterbury"
+        },
+        {
+            "serial_no": 27,
+            "name": "Carlisle"
+        },
+        {
+            "serial_no": 28,
+            "name": "Chelmsford"
+        },
+        {
+            "serial_no": 29,
+            "name": "Chester"
+        },
+        {
+            "serial_no": 30,
+            "name": "Chichester"
+        },
+        {
+            "serial_no": 31,
+            "name": "Durham"
+        },
+        {
+            "serial_no": 32,
+            "name": "Ely"
+        },
+        {
+            "serial_no": 33,
+            "name": "Exeter"
+        },
+        {
+            "serial_no": 34,
+            "name": "Gloucester"
+        },
+        {
+            "serial_no": 35,
+            "name": "Hereford"
+        },
+        {
+            "serial_no": 36,
+            "name": "Hull"
+        },
+        {
+            "serial_no": 37,
+            "name": "Lancaster"
+        },
+        {
+            "serial_no": 38,
+            "name": "Leicester"
+        },
+        {
+            "serial_no": 39,
+            "name": "Lichfield"
+        },
+        {
+            "serial_no": 40,
+            "name": "Lincoln"
+        },
+        {
+            "serial_no": 41,
+            "name": "Norwich"
+        },
+        {
+            "serial_no": 42,
+            "name": "Oxford"
+        },
+        {
+            "serial_no": 43,
+            "name": "Peterborough"
+        },
+        {
+            "serial_no": 44,
+            "name": "Preston"
+        },
+        {
+            "serial_no": 45,
+            "name": "Ripon"
+        },
+        {
+            "serial_no": 46,
+            "name": "Salford"
+        },
+        {
+            "serial_no": 47,
+            "name": "Salisbury"
+        },
+        {
+            "serial_no": 48,
+            "name": "St Albans"
+        },
+        {
+            "serial_no": 49,
+            "name": "Stoke-on-Trent"
+        },
+        {
+            "serial_no": 50,
+            "name": "Sunderland"
+        },
+        {
+            "serial_no": 51,
+            "name": "Truro"
+        },
+        {
+            "serial_no": 52,
+            "name": "Wakefield"
+        },
+        {
+            "serial_no": 53,
+            "name": "Wells"
+        },
+        {
+            "serial_no": 54,
+            "name": "Westminster"
+        },
+        {
+            "serial_no": 55,
+            "name": "Winchester"
+        },
+        {
+            "serial_no": 56,
+            "name": "Wolverhampton"
+        },
+        {
+            "serial_no": 57,
+            "name": "Worcester"
+        },
+        {
+            "serial_no": 58,
+            "name": "York"
+        },
+        {
+            "serial_no": 59,
+            "name": "Dundee"
+        },
+        {
+            "serial_no": 60,
+            "name": "Inverness"
+        },
+        {
+            "serial_no": 61,
+            "name": "Perth"
+        },
+        {
+            "serial_no": 62,
+            "name": "Stirling"
+        },
+        {
+            "serial_no": 63,
+            "name": "Bangor"
+        },
+        {
+            "serial_no": 64,
+            "name": "Newport"
+        },
+        {
+            "serial_no": 65,
+            "name": "St Asaph"
+        },
+        {
+            "serial_no": 66,
+            "name": "St David's"
+        },
+        {
+            "serial_no": 67,
+            "name": "Swansea"
+        },
+        {
+            "serial_no": 68,
+            "name": "Armagh"
+        },
+        {
+            "serial_no": 69,
+            "name": "Lisburn"
+        },
+        {
+            "serial_no": 70,
+            "name": "Newry"
+        },
+        {
+            "serial_no": 71,
+            "name": "Derry/Londonderry"
+        }
+    ],
+    "popular": [
+        {
+            "serial_no": 1,
+            "name": "London"
+         
+        },
+        {
+            "serial_no": 6,
+            "name": "Edinburgh"
+        },
+        {
+            "serial_no": 2,
+            "name": "Manchester"
+        },
+        {
+            "serial_no": 3,
+            "name": "Birmingham"
+        },
+        {
+            "serial_no": 5,
+            "name": "Glasgow"
+        },
+        {
+            "serial_no": 4,
+            "name": "Liverpool"
+        },
+        {
+            "serial_no": 7,
+            "name": "Bristol"
+        },
+        {
+            "serial_no": 25,
+            "name": "Cambridge"
+        },
+        {
+            "serial_no": 15,
+            "name": "Cardiff"
+        },
+        {
+            "serial_no": 9,
+            "name": "Leeds"
+        },
+        {
+            "serial_no": 21,
+            "name": "Bath"
+        },
+        {
+            "serial_no": 12,
+            "name": "Nottingham"
+        },
+        {
+            "serial_no": 13,
+            "name": "Southampton"
+        },
+        {
+            "serial_no": 11,
+            "name": "Newcastle upon Tyne"
+        },
+        {
+            "serial_no": 10,
+            "name": "Sheffield"
+        }
+    ],
+    "regions": [
+        "South West",
+        "South East",
+        "East Anglia",
+        "West Midlands",
+        "East Midlands",
+        "Yorkshire",
+        "North West",
+        "North East"
+    ]
+}

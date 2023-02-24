@@ -53,7 +53,7 @@ export default function Section6() {
             require("../../../../assets/l1.png"),
             require("../../../../assets/l2.png"),
             require("../../../../assets/l4.png"),
-            require("../../../../assets/l3.png"),
+            // require("../../../../assets/l3.png"),
           ].map((item, index) => (
             <div key={index} style={{}}>
               <img
