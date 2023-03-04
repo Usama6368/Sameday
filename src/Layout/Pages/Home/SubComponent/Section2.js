@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import colors from "../../../../config/colors";
 export default function Section2() {
@@ -74,8 +74,7 @@ export default function Section2() {
             },
             {
               name: "Legal Documents Courier",
-              detail:
-                "Need a letter or a document delivering on an urgent or time critical basis",
+              detail: `Need a letter or a document delivering on an urgent or time critical basis.                  \n\n`,
               link: "legal-&-documents-courier",
             },
           ].map((item, index) => (
@@ -93,6 +92,7 @@ export default function Section2() {
                 }}
               >
                 <img
+                  alt={item.name}
                   style={{
                     height: "100px",
                     width: "100px",
@@ -123,7 +123,10 @@ export default function Section2() {
                 <br />
 
                 <span
-                  onClick={() => navigation(`/services/${item.link}`)}
+                  onClick={() => {
+                    navigation(`/services/${item.link}`);
+                    window.scrollTo(0, 0);
+                  }}
                   style={{
                     fontSize: "16px",
                     textAlign: "center",

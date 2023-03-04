@@ -23,65 +23,72 @@ function LandingPage({ id, onLocationPress }) {
     <div
       style={{
         backgroundImage: `url(${myImage})`,
+        backgroundRepeat: "no-repeat",
       }}
     >
-      <Row className="main">
-        <CNavbar onLocationPress={onLocationPress} />
-        <Col className="same" style={{}} sm={sm} md={md} lg={lg}>
-          <p className="sameday">
-            {id
-              ? `${id.replace(/-/g, "  ")}!`
-              : "Same Day & Urgent Courier Services!"}
-          </p>
+      <div
+        style={{
+          backgroundColor: "#00000065",
+        }}
+      >
+        <Row className="main">
+          <CNavbar onLocationPress={onLocationPress} />
+          <Col className="same" style={{}} sm={sm} md={md} lg={lg}>
+            <p className="sameday">
+              {id
+                ? `${id.replace(/-/g, "  ")}!`
+                : "Same Day & Urgent Courier Services!"}
+            </p>
 
-          {pathname.includes("location")
-            ? locationHeaderArray(id)
-            : serviceHeaderArray(id ? id : "same-day-courier").map(
-                (item, index) => (
-                  <React.Fragment key={index}>
-                    <span
-                      style={{
-                        color: colors.white,
-                        textAlign: "justify",
-                        textTransform: "capitalize",
-                      }}
-                    >
-                      {item}
-                    </span>
-                    <br />
-                    <br />
-                  </React.Fragment>
-                )
-              )}
+            {pathname.includes("location")
+              ? locationHeaderArray(id)
+              : serviceHeaderArray(id ? id : "same-day-courier").map(
+                  (item, index) => (
+                    <React.Fragment key={index}>
+                      <span
+                        style={{
+                          color: colors.white,
+                          textAlign: "justify",
+                          textTransform: "capitalize",
+                        }}
+                      >
+                        {item}
+                      </span>
+                      <br />
+                      <br />
+                    </React.Fragment>
+                  )
+                )}
 
-          <span
-            style={{
-              color: colors.white,
-              textAlign: "justify",
-              textTransform: "uppercase",
-            }}
-          >
-            {`call us now`}
-          </span>
+            <span
+              style={{
+                color: colors.white,
+                textAlign: "justify",
+                textTransform: "uppercase",
+              }}
+            >
+              {`call us now`}
+            </span>
 
-          <br />
+            <br />
 
-          <span
-            style={{
-              color: colors.white,
-              fontSize: "40px",
-              fontWeight: "bold",
-            }}
-          >
-            {info.landline}
-          </span>
-        </Col>
-        <Col sm={sm} md={md} lg={lg}>
-          <Quote id={id} />
-        </Col>
-      </Row>
-      <br />
-      <br />
+            <span
+              style={{
+                color: colors.white,
+                fontSize: "40px",
+                fontWeight: "bold",
+              }}
+            >
+              {info.landline}
+            </span>
+          </Col>
+          <Col sm={sm} md={md} lg={lg}>
+            <Quote id={id} />
+          </Col>
+        </Row>
+        <br />
+        <br />
+      </div>
     </div>
   );
 }
